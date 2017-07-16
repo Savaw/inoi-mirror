@@ -1,0 +1,91 @@
+@font-face {
+	font-family: Sabon;
+	src: url('../fonts/sabon.ttf');
+}
+@font-face {
+	font-family: Droid;
+	src: url('../fonts/DroidArabicNaskh/DroidNaskh-Regular.ttf');
+}
+
+body {
+	font-family: Droid;
+	margin: 2em 2em 2em 2em;
+	font-size: 150% !important;
+}
+.en-text {
+	font-family: Sabon, sans-serif;
+	font-size: 20px;
+}
+.jumbotron {
+	float: center;
+	margin-right: 10%;
+	width: 80%;
+	text-align: right;
+	background-color: transparent;
+}
+.panel {
+	float: center;
+	margin-right: 26%;
+	width: 48%;
+}
+.panel-body {
+	padding-top: 30px;
+}
+.form-horizontal input, button, lable, option{
+	padding-top: 4px !important;
+	font-family: Sabon, Droid;
+	font-size: 17px !important;
+}
+.form-horizontal span {
+	font-size: 15px;
+	margin-bottom: 0px;
+}
+.btn{
+	margin-top: 5px;
+	padding: 3px 15px 3px 15px !important;
+	font-size: 15px !important;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  margin-right: -2em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+tbody {
+	text-align: right;
+}
+
+code {
+  font-size: 80%;
+}

@@ -1,0 +1,82 @@
+{% extends 'cms_register/base.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block contest %}
+active
+{% endblock %}
+
+{% block content %}
+
+		{% if done == True %}
+		<div class="alert alert-success alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    ثبت نام با موفقیت انجام شد.
+    </div>
+		{% endif %}
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th>نام آزمون</th>
+						<th class="text-center">زمان	</th>
+						<th class="text-center">مدت	ثبت‌نام</th>
+						<th class="text-center">مدت	آزمون</th>
+						<th class="text-center">شرکت‌کننده‌ها</th>
+						<th></th>	
+					</tr>
+				</thead>
+				<tbody>
+					{% for contest in contests %}
+					<tr>
+						<td class="text-center">{{ forloop.counter }}</td>
+						<td>{{ contest.contest_name }}</td>
+						<td class="text-center">{{ date|get_item:contest.id }}<br>{{ time|get_item:contest.id }}</td>
+						<td class="text-center">{{ dur|get_item:contest.id }}</td>
+						<td class="text-center">{{ need|get_item:contest.id }}</td>
+						<td class="text-center">{{ contest.reg_count }}</td>
+						<td class="text-center" >
+							<form class="form-inline" method="post" action="{% url 'cms_register:contests' %}">
+								{% csrf_token %}
+								<div class="form-group">
+									<input type="hidden" name="cid" value="{{ contest.id }}">
+									<div class="btn-group" role="group" aria-label="">
+										{% if ended|get_item:contest.id %}
+											<a href="{% url 'cms_register:ranking' contest.id %}" class="btn btn-info" {% if not contest.ranking_file %} disabled="dis" {% endif %}>رده‌بندی</a>
+										{% endif %}
+										{% if expired|get_item:contest.id %}
+											{% if contest.unofficial_ranking_file %}
+											<a href="{% url 'cms_register:unranking' contest.id %}" class="btn btn-primary">رده‌بندی تمرینی</a>
+											{% endif %}
+										{% else %}
+											{% if not request.user.is_authenticated %}
+												<a href="{% url 'cms_register:login' %}" class="btn btn-warning">وارد شوید</a>
+											{% elif not registered|get_item:contest.id %}
+												<button type="submit" name="register" value="register" class="btn btn-success">ثبت‌نام</button>
+											{% else %}
+												<a href="{{ contest.contest_url }}" class="btn btn-primary" {% if not registered|get_item:contest.id %} disabled="disabled" {% endif %}>ورود</a>
+
+											{% endif %}
+										{% endif %}
+									</div>
+										{% if not expired|get_item:contest.id %}
+											<div id="clock{{ contest.id }}" style="margin-top: 10%"></div>
+											<script type="text/javascript">
+											var rem_time = new Date().getTime() + {{ cdown|get_item:contest.id }} * 1000;
+											$('#clock{{ contest.id }}').countdown(rem_time, function(event) {
+											  	var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+											    $(this).html('مهلت ثبت‌نام: '+toPersianNum(event.strftime(totalHours + ':%M:%S')));
+												});
+											</script>
+										{% endif %}
+								</div>
+							</form>								
+						</td>	
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+    
+{% endblock %}

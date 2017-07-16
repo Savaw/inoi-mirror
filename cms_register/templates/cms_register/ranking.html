@@ -1,0 +1,40 @@
+{% extends 'cms_register/base.html' %}
+
+{% block contest %}
+active
+{% endblock %}
+
+{% block content %}
+	{% if not exp and not request.user.is_staff %}
+		<div class="alert alert-warning" role="alert">
+		<strong>دسترسی مجاز نیست.</strong><br><br>مسابقه هنوز تمام نشده است.
+		</div>
+	{% elif error %}
+		<div class="alert alert-info" role="alert">
+		<strong>دسترسی مجاز نیست.</strong><br><br>رده‌بندی هنوز وجود ندارد.
+		</div>	
+	{% else %}
+			<h3 class="text-center">{{ contest.contest_name }}</h3>
+			<br>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						{% for t in head %}
+							<th class="text-center">{{ t }} {% if un %} - غیررسمی {% endif %}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+					<tr>
+						<td class="text-center">{{ user.rank }}</td>
+						<td>{{ user.name }}</td>
+						{% for sub in user.subs %}
+							<td class="text-center" style="background-color:rgb({{ sub.green }},255,{{ sub.green }})">{{ sub.score }}</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+    {% endif %}
+{% endblock %}

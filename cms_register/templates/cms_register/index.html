@@ -1,0 +1,12 @@
+{% extends 'cms_register/base.html' %}
+
+{% block content %}
+      <h1 style="text-align: center">آزمون‌های عملی</h1>
+			<br>
+      <p class="lead">
+				{% for Ann in Announce %}
+					<blockquote>{{ Ann.announce_text }}</blockquote>
+				{% endfor %}
+			</p>
+{% endblock %}
+

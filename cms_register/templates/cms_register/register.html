@@ -1,0 +1,68 @@
+{% extends 'cms_register/base.html' %}
+
+{% block header %}
+	<script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+{% endblock %}
+
+{% block reg %}
+active
+{% endblock %}
+
+{% block content %}
+
+	{% if ok %}
+	<div class="alert alert-success alert-dismissible fade in" role="alert">
+		{% if x %}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		{% endif %}
+	اطلاعات ثبت شد.</div>
+	{% endif %}
+	{% if not ok or x %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">{% if x %}تنظیمات{% else %}ثبت نام{% endif %}</div>
+  	<div class="panel-body">
+		{% if x %}
+			<p style="font-size: 14px; color : blue; padding-bottom: 1em">اگر نمی‌خواهید رمزعبور را تغییر دهید، رمزعبور و تکرار آن را خالی بگذارید.</p>
+		{% endif %}
+      <form class="form-horizontal" method="post" action="{% if not x %}{% url 'cms_register:register' %}{% else %}{% url 'cms_register:profile' %}{% endif %}">
+		{% csrf_token %}
+
+					{% for key in info %}
+				<div class="form-group {% if error|get_item:key != '' %}has-error{% endif %}">
+						<label for="{{ key }}" class="col-sm-3 control-label">{{ place|get_item:key }}</label>
+						<div class="col-sm-9">
+							{% if key == 'grade' %}
+							<select class="form-control" id="{{ key }}" name="{{ key }}">
+								  <option class="form-control" value="دهم">دهم</option>
+								  <option class="form-control" value="سوم">سوم</option>
+								  <option class="form-control"  value="سایر">سایر</option>
+							</select>
+								
+							{% else %}
+							<input {% if x and key == 'username' %}disabled="disabled"{% endif %} type="{{ type|get_item:key }}" class="form-control" id="{{ key }}" name="{{ key }}" placeholder="{{ place|get_item:key }}" value="{{ info|get_item:key }}">
+							{% endif %}
+							{% if error|get_item:key != '' %}
+							 <span class="help-block">{{ error|get_item:key }}</span>
+							{% endif %}
+						</div>
+				</div>
+					{% endfor %}
+				<div class="form-group {% if caper %}has-error{% endif %}">
+					<div class="col-sm-offset-3 col-sm-9">
+						<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+					{% if caper %}
+						<span class="help-block">لازم است که ربات نباشید.</span>
+					{% endif %}
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-9">
+						<button type="submit" class="btn btn-primary">ثبت</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}
+

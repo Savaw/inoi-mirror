@@ -1,0 +1,26 @@
+Username	نام و نام‌خانوادگی	OmNom and Candy	OmNom and ColoredTree	OmNom and NPC	OmNom and UnColoredTree	OmNom and Roto	مجموع
+100	100	100	100	100	500
+Ahmad_RH	Ahmad Rahimi	100.0	100.0	33.0	40.0	0.0	273.0
+AliP	Ali Pishgard	0.0	0.0	0.0	0.0	0.0	0.0
+Amirabbas_Zarei	amirabbas zarei	0.0	0.0	0.0	0.0	0.0	0.0
+Amoo_Hahsem	Seyyed Alireza Hashemi	100.0	100.0	33.0	0.0	0.0	233.0
+Kinoy	Amirmohammad Ghasemi	0.0	0.0	0.0	0.0	0.0	0.0
+MFoad_Aba	Mohammad Foad Abaei	0.0	0.0	0.0	0.0	0.0	0.0
+Mahdi_Jfri	Mahdi Jafari	0.0	100.0	33.0	0.0	0.0	133.0
+Sali	Seyed Ali Tabatabaie	100.0	100.0	100.0	0.0	0.0	300.0
+SamyarS80	Samyar Samavat	0.0	0.0	0.0	0.0	0.0	0.0
+ShJahan	Shayan CheshmJahan	100.0	100.0	100.0	40.0	0.0	340.0
+SmsS	Seyed Mahdi Sadegh Shobeiri	100.0	100.0	100.0	40.0	0.0	340.0
+adolf_mirzaghasemi	Seyed Adolf Mirzaghasemi	100.0	100.0	100.0	40.0	0.0	340.0
+alirezanobakht	Alireza Nobakht	0.0	0.0	0.0	0.0	0.0	0.0
+aliyahyaei	ali yahyaei	100.0	100.0	0.0	0.0	0.0	200.0
+hrzuser	hamidreza kamkari	100.0	100.0	100.0	40.0	0.0	340.0
+mahdavifar	Ali Mahdavifar	100.0	0.0	0.0	0.0	0.0	100.0
+matich	seyed mani sadati	100.0	100.0	0.0	40.0	0.0	240.0
+mika	mikaeel ghorbani	0.0	100.0	0.0	0.0	0.0	100.0
+mnazariazad	Maede Sadat Nazari	100.0	100.0	9.0	12.0	0.0	221.0
+modsart	Mohammad Mohammadi	0.0	0.0	0.0	0.0	0.0	0.0
+mohammadhejry	mohammad hejry	100.0	100.0	0.0	0.0	0.0	200.0
+mohammadsh	mohammad shahidzade	0.0	100.0	0.0	0.0	0.0	100.0
+opg	Omid Panakari	100.0	100.0	33.0	40.0	0.0	273.0
+seyedssz	Seyed Sina Salehzadeh	100.0	100.0	100.0	40.0	0.0	340.0

@@ -1,0 +1,91 @@
+Username	User	Benjamin And MRXs Source	Benjamin And Final Password	Benjamin's and Mary's Travel	Global
+100	100	100	300
+951331062	Mahdi ErfaniTabar	0.0	0.0	0.0	0.0
+ABCEFG	abc Efg	0.0	0.0	0.0	0.0
+AMG	Amir Mohammad Ghasemi	0.0	0.0	0.0	0.0
+AM_Paydar	AmirMasoud Paydar	0.0	0.0	0.0	0.0
+Ahmad_RH	Ahmad Rahimi	100.0	32.0	0.0	132.0
+AliKhosravi	Ali Khosravi	100.0	32.0	0.0	132.0
+AliTavassoly	Ali Tavassoly	0.0	32.0	0.0	32.0
+Ali_yahyaei78	Ali Yahyaei	0.0	0.0	0.0	0.0
+AlirezaAG	Alireza Aghaei	0.0	0.0	0.0	0.0
+Alireza_MZV	AliReza Mortazavi	0.0	0.0	0.0	0.0
+AmSen	AmirHossein PashaeeHir	100.0	100.0	0.0	200.0
+Amirali20003	Ali Ebrahimi	0.0	32.0	0.0	32.0
+Amoo_Hahsem	Seyyed Alireza Hashemi	0.0	32.0	0.0	32.0
+FaRZaM	Farzam Zohdi	0.0	32.0	0.0	32.0
+FaRZaM_Z	Yaasser Zohdi Nassab	0.0	0.0	0.0	0.0
+Hallucination	omid azadi	0.0	0.0	0.0	0.0
+ILaP	TanHaYe TaHa	100.0	32.0	100.0	232.0
+M2J	MohammadJavad Jalilvand	0.0	0.0	0.0	0.0
+MohammadJA	MohammadJavad Akbari	100.0	0.0	0.0	100.0
+MuhammadTD	Mohamad Taghi Dabaaghha	100.0	32.0	0.0	132.0
+Nima10Khodaveisi	Nima Khodaveisi	0.0	0.0	0.0	0.0
+OPG	Omid Panakari	0.0	0.0	0.0	0.0
+RezaSi	Reza Si	0.0	0.0	0.0	0.0
+Roach	seyed mani	0.0	0.0	0.0	0.0
+Rohollah	Rohollah Roh	0.0	0.0	0.0	0.0
+ShJahan	Shayan CheshmJahan	100.0	100.0	100.0	300.0
+Sijal	Sij Khf	0.0	0.0	0.0	0.0
+SmsS	Seyed Mahdi Sadegh Shobeiri	100.0	32.0	100.0	232.0
+TOPCODER	Aryan Esmailpour	0.0	0.0	0.0	0.0
+TaVaK	Alireza Tavakoli	0.0	0.0	0.0	0.0
+XXX	X XX	0.0	0.0	0.0	0.0
+Y2313	Ali Mahzoun	0.0	0.0	0.0	0.0
+aaabbbccc	mamad mamadi	100.0	0.0	0.0	100.0
+aakalhor	amiarli kalhor	0.0	0.0	0.0	0.0
+aakalhor_79	Amir Ali Kalhor	0.0	0.0	0.0	0.0
+alii	ali reza	100.0	32.0	0.0	132.0
+alikh	Ali Khoshtinat	0.0	0.0	0.0	0.0
+alsopa	alireza sorkhabad pazoki	100.0	0.0	0.0	100.0
+amir.mirzaei1379	Amir Mirzaei	0.0	0.0	0.0	0.0
+amir.z	Amir Abbaas Zarei	0.0	0.0	0.0	0.0
+amirabbas	amirabbas zarei	0.0	0.0	0.0	0.0
+amirabbas_zarei	amirabbas zarei	100.0	32.0	0.0	132.0
+amirmirzaei79	Amir Mirzaei	0.0	0.0	0.0	0.0
+amoo	amoo amoo	0.0	0.0	0.0	0.0
+aremo	AmirReza Moqaddam	0.0	0.0	0.0	0.0
+arshiasol	arshia soltani	0.0	32.0	0.0	32.0
+arshn	Alireza Sharif Nataaj	0.0	0.0	0.0	0.0
+b2rdia	‌Bardia Arianfard	100.0	32.0	0.0	132.0
+behnood	behnood masoudi	0.0	0.0	0.0	0.0
+csb	Seyed Ali Tabatabaie	0.0	0.0	0.0	0.0
+daneshvar_a	Daneshvar Amrollahi	0.0	32.0	0.0	32.0
+erfan	erfan zaree	0.0	32.0	0.0	32.0
+erfaniiyan	danial erfanian	0.0	0.0	0.0	0.0
+folad	Mohammad-Foad Abayi	0.0	0.0	0.0	0.0
+hamid_k	hamid kalbaasi	0.0	0.0	0.0	0.0
+hosseinmp76	hossein mahdavipour	0.0	0.0	0.0	0.0
+iranganool	saber zafarpoor	0.0	0.0	0.0	0.0
+karno_1066	ali yahyaei	100.0	0.0	0.0	100.0
+mSina	m Sina Pakseresht	0.0	0.0	0.0	0.0
+mahdavifar	Ali Mahdavifar	0.0	0.0	0.0	0.0
+mahdiyar12345	mahdiyar esfhani	0.0	0.0	0.0	0.0
+mani	mani sadati	0.0	0.0	0.0	0.0
+mani_s	seyed mani sadati	0.0	0.0	0.0	0.0
+maraco	mahdi rahmani	0.0	0.0	0.0	0.0
+mdrfi	Mehrshad R	0.0	0.0	0.0	0.0
+mehrbod	Mehrbod Javadi	0.0	0.0	0.0	0.0
+mohammadsh	mohammad shahidzade	0.0	0.0	0.0	0.0
+mohammadsj	Mohammad SeyedJavadi	0.0	0.0	0.0	0.0
+mohesn_shiri	Mohsen Shiri	100.0	0.0	0.0	100.0
+mr_banana	Mohammad Mahdavi	0.0	32.0	0.0	32.0
+mr_molla	ali Mollahoseini	0.0	0.0	0.0	0.0
+mrmahdinazeri	mahdi nazeri	0.0	32.0	0.0	32.0
+mrmaster	hamidreza kamkari	0.0	0.0	0.0	0.0
+mrp1999	Mohamad Matin Roohbakhsh	100.0	32.0	0.0	132.0
+n3sl	Navid Eslami	100.0	32.0	0.0	132.0
+pabaee	Pooya Mohammad Lavasani	0.0	0.0	0.0	0.0
+pazoki	Alireza Sorkh Aabaad Pazoki	0.0	0.0	0.0	0.0
+peyton	Mohamad Javaad Jalilvand	100.0	32.0	0.0	132.0
+sajjadvalaei	Sajjad valaei	0.0	0.0	0.0	0.0
+sesto	hesam afroozi	0.0	0.0	0.0	0.0
+seyedssz	Seyed Sina Salehzadeh	0.0	0.0	0.0	0.0
+shayan718	shayan ghods	0.0	0.0	0.0	0.0
+silgena	Erfaan Zarei	0.0	0.0	0.0	0.0
+smsk1379	sayed mohammad sadegh keykhosravi	0.0	0.0	0.0	0.0
+smss	Seyed Mahdi Saadegh Shobeyri	0.0	0.0	0.0	0.0
+taba	seyed ali tabatabaie	100.0	0.0	0.0	100.0
+testing	iamtesting tester	0.0	0.0	0.0	0.0
+trevor_mcnaven	trevor mcnaven	100.0	0.0	0.0	100.0
+unknown	unknown unknown zade :D	100.0	32.0	100.0	232.0

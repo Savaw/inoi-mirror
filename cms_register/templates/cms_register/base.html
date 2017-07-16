@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <script src="{% static 'cms_register/jquery.countdown.min.js' %}"></script>
+	<script>
+	function toPersianNum( num, dontTrim ) {
+		var i = 0,
+		dontTrim = dontTrim || false,
+		num = dontTrim ? num.toString() : num.toString().trim(),
+		len = num.length,
+		res = '',
+		pos,
+		persianNumbers = typeof persianNumber == 'undefined' ?
+			['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
+			persianNumbers;
+		for (; i < len; i++)
+			if (( pos = persianNumbers[num.charAt(i)] ))
+				res += pos;
+			else
+				res += num.charAt(i);	
+			return res;
+	}
+	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+		<title>شاززز - Shaazzz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'cms_register/css/bootstrap.css' %}?v=89" rel="stylesheet">
+    <link href="{% static 'cms_register/css/mine.css' %}?v=89" rel="stylesheet">
+    <!-- Bootstrap RTL theme -->
+    <link href="{% static 'cms_register/rtl/bootstrap-rtl.css' %}?v=89" rel="stylesheet">
+
+		<style>
+		</style>
+
+
+		{% block header %}
+		{% endblock %}
+
+  </head>
+
+  <body role="document">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><img src="{% static 'cms_register/logo.png' %}" style="margin-top: -0.5em !important"></a>
+        </div>
+
+          <ul class="nav navbar-nav">
+            <li class="{% block contest %}{% endblock %}"><a href="{% url 'cms_register:contests' %}">مسابقات</a></li>
+          </ul>
+          
+
+          <ul class="nav navbar-nav navbar-right flip">
+							{% if request.user.is_authenticated %}
+						<li class="dropdown">
+								<a href="#" class="dropdown-toggle en-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ request.user.username }}  <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									{% if request.user.is_staff %}
+									<li><a href="{% url 'admin:index' %}">مدیریت</a></li>
+									<li role="separator" class="divider"></li>
+									{% endif %}
+									<li><a href="{% url 'cms_register:profile' %}">نمایه</a></li>
+									<li><a href="{% url 'cms_register:logout' %}">خروج</a></li>
+								</ul>
+						</li>
+							{% else %}
+									<li class="{% block login %}{% endblock %}"><a href="{% url 'cms_register:login' %}">ورود</a></li>
+									<li class="{% block reg %}{% endblock %}"><a href="{% url 'cms_register:register' %}">ثبت نام</a></li>
+							{% endif %}
+						</li>
+          </ul>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+		<div class="jumbotron">
+      {% block content %}
+			{% endblock %}
+    </div>
+
+		<footer class="footer">
+      <div class="container">
+        <p class="text-muted">تمامی حقوق برای <a href="http://shaazzz.ir">شاززز</a> محفوظ است.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'cms_register/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+      $('button').popover();
+    </script>
+  </body>
+</html>

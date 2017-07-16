@@ -1,0 +1,19 @@
+{% extends 'scoreboard/base.html' %}
+
+{% block content %}
+	<p class="text-center">From {{ from }} </p></br>
+	<table class="table" dir="ltr">
+		<tr>
+			<th class="text-center"> Username </th>
+			<th class="text-center"> Accepted </th>
+		</tr>
+		{% for user in mems %}
+			<tr>
+				<td class="text-center">{{ user.name }}</td>
+				<td class="text-center">{{ user.solved }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}
+
