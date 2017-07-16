@@ -7,6 +7,7 @@ import locale
 import re
 import subprocess
 import urllib
+from functools import cmp_to_key
 
 import jdatetime
 from django.conf import settings
@@ -16,61 +17,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaulttags import register
 from django.utils import timezone
 
+from cms_register.utils import password_check, persian_num, comp
 from .models import Announcement, Contest, Participant
 
 
 # Create your views here.
 
-# @login_required(login_url="login/")
-@register.filter
-def get_item(dictionary, key):
-    return dictionary.get(key)
-
-
-def password_check(password):
-    """
-    Verify the strength of 'password'
-    Returns a dict indicating the wrong criteria
-    A password is considered strong if:
-        8 characters length or more
-        1 digit or more
-        1 symbol or more
-        1 uppercase letter or more
-        1 lowercase letter or more
-    """
-
-    # calculating the length
-    length_error = len(password) < 8
-
-    # searching for digits
-    digit_error = re.search(r"\d", password) is None
-
-    # searching for uppercase
-    uppercase_error = re.search(r"[A-Z]", password) is None
-
-    # searching for lowercase
-    lowercase_error = re.search(r"[a-z]", password) is None
-
-    # searching for symbols
-    symbol_error = re.search(r"[ !#$%&'()*+,-./[\\\]^_`{|}~" + r'"]', password) is None
-
-    # overall result
-    password_ok = not (length_error or digit_error or (uppercase_error and lowercase_error))
-
-    return {
-        'password_ok': password_ok,
-        'length_error': length_error,
-        'digit_error': digit_error,
-        'uppercase_error': uppercase_error,
-        'lowercase_error': lowercase_error,
-        'symbol_error': symbol_error,
-    }
-
 
 def index(request):
     All = Announcement.objects.all()
-    print(request.user.is_authenticated() == True)
-    print(request.user)
     return render(request, "cms_register/index.html", {'Announce': All})
 
 
@@ -83,7 +38,6 @@ def loginv(request):
         passw = request.POST['password']
         ok = True
     user = authenticate(username=usern, password=passw)
-    print(request.user.is_authenticated() == True)
     if user is not None or request.user.is_authenticated():
         login(request, user)
         return redirect('cms_register:index')
@@ -234,17 +188,6 @@ def register(request, x=0):
                    'place': place, 'type': types, 'caper': cap_error, 'x': x})
 
 
-l2p = [u'۰', u'۱', u'۲', u'۳', u'۴', u'۵', u'۶', u'۷', u'۸', u'۹']
-
-
-def persian_num(value):
-    if isinstance(value, int):
-        value = str(value)
-    for i in range(10):
-        value = value.replace(str(i), l2p[i])
-    return value
-
-
 def format_timedelta(td, type):
     days = td.days
     hours, remainder = divmod(td.seconds, 3600)
@@ -305,46 +248,6 @@ def contest_view(request):
                    'done': done, 'dur': dur, 'need': need, 'ended': ended, 'cdown': cdown})
 
 
-def comp(a, b):
-    if (a['subs'][-1]['score'] > b['subs'][-1]['score']):
-        return -1
-    elif (a['subs'][-1]['score'] < b['subs'][-1]['score']):
-        return 1
-    else:
-        if (a['name'].lower() < b['name'].lower()):
-            return -1
-        else:
-            return 1
-
-
-def cmp_to_key(mycmp):
-    'Convert a cmp= function into a key= function'
-
-    class K:
-        def __init__(self, obj, *args):
-            self.obj = obj
-
-        def __lt__(self, other):
-            return mycmp(self.obj, other.obj) < 0
-
-        def __gt__(self, other):
-            return mycmp(self.obj, other.obj) > 0
-
-        def __eq__(self, other):
-            return mycmp(self.obj, other.obj) == 0
-
-        def __le__(self, other):
-            return mycmp(self.obj, other.obj) <= 0
-
-        def __ge__(self, other):
-            return mycmp(self.obj, other.obj) >= 0
-
-        def __ne__(self, other):
-            return mycmp(self.obj, other.obj) != 0
-
-    return K
-
-
 def unrank(request, contest_id):
     return ranking(request, contest_id, True)
 
@@ -361,7 +264,7 @@ def ranking(request, contest_id, unof=False):
         return render(request, "cms_register/ranking.html", {'error': True})
     users = rank.readlines()
     head = users[0].decode().replace('\n', '').split('\t')
-    head[0] = '#';
+    head[0] = '#'
     mx = users[1].decode().replace('\n', '').split('\t')
     for i in range(len(mx)):
         mx[i] = float(mx[i])
