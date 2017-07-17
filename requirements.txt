@@ -1,0 +1,5 @@
+sorl-thumbnail
+django-ordered-model
+django-extensions
+django
+jdatetime

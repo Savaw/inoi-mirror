@@ -17,7 +17,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaulttags import register
 from django.utils import timezone
 
-from cms_register.utils import password_check, persian_num, comp
+from cms_register.utils import password_check, persian_num, comp, cms_user_exists, cms_add_user, cms_edit_user
 from .models import Announcement, Contest, Participant
 
 
@@ -40,6 +40,15 @@ def loginv(request):
     user = authenticate(username=usern, password=passw)
     if user is not None or request.user.is_authenticated():
         login(request, user)
+        if not cms_user_exists(user.username):
+            user_info = {
+                'username': user.username,
+                'name': user.first_name,
+                'lname': user.last_name,
+                'password': passw,
+                'email': user.email,
+            }
+            cms_add_user(user_info)
         return redirect('cms_register:index')
     else:
         return render(request, "cms_register/login.html", {'Error': ok})
@@ -155,16 +164,10 @@ def register(request, x=0):
             user = User.objects.create_user(info['username'], info['email'], info['password'])
             user.first_name = info['name']
             user.last_name = info['lname']
-            # user.contestant.grade = info['grade']
-            # user.contestant.school = info['school']
             user.save()
-            res = subprocess.call(
-                ['cmsAddUser', '-p', info['password'], '-e', info['email'], info['name'], info['lname'],
-                 info['username']])
-            if not res:
-                subprocess.call(
-                    ['python', 'python/EditUser.py', '-p', info['password'], '-e', info['email'], '-fn', info['name'],
-                     '-ln', info['lname'], info['username']])
+            added = cms_add_user(info)
+            if not added:
+                cms_edit_user(info)
             done = True
         if ok and x:
             user = User.objects.get(username=info['username'])
@@ -174,11 +177,12 @@ def register(request, x=0):
             if info['password'] != '':
                 user.set_password(info['password'])
                 subprocess.call(
-                    ['python', 'python/EditUser.py', '-p', info['password'], '-e', info['email'], '-fn', info['name'],
+                    ['python', 'python/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
+                     info['name'],
                      '-ln', info['lname'], info['username']])
             else:
                 subprocess.call(
-                    ['python', 'python/EditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
+                    ['python', 'python/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
                      info['username']])
             user.save()
             done = True

@@ -1,6 +1,31 @@
 import re
+import subprocess
 
 from django.template.defaulttags import register
+
+
+def cms_user_exists(username):
+    result = subprocess.run(['./scripts/cmsHasUser.py', username], stdout=subprocess.PIPE).stdout
+    result = bool(result.split('\n')[-2])
+    return result
+
+
+def cms_add_user(info):
+    return subprocess.call(['cmsAddUser',
+                            '-p', info['password'],
+                            '-e', info['email'],
+                            info['name'],
+                            info['lname'],
+                            info['username']])
+
+
+def cms_edit_user(info):
+    return subprocess.call(['./scripts/cmsEditUser.py',
+                            '-p', info['password'],
+                            '-e', info['email'],
+                            '-fn', info['name'],
+                            '-ln', info['lname'],
+                            info['username']])
 
 
 def password_check(password):
