@@ -280,7 +280,7 @@ def ranking(request, contest_id, unof=False):
         for i in range(len(ret)):
             inf = {}
             ret[i] = float(ret[i])
-            inf['score'] = int(ret[i]);
+            inf['score'] = int(ret[i])
             inf['green'] = int(255 - ret[i] / mx[i] * mxg)
             res.append(inf)
         th['subs'] = res
