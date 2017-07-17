@@ -6,7 +6,7 @@ from django.template.defaulttags import register
 
 def cms_user_exists(username):
     result = subprocess.run(['./scripts/cmsHasUser.py', username], stdout=subprocess.PIPE).stdout
-    result = bool(int(result.split('\n')[-2]))
+    result = bool(int(result.decode("utf-8").split('\n')[-2]))
     return result
 
 
