@@ -40,15 +40,17 @@ def loginv(request):
     user = authenticate(username=usern, password=passw)
     if user is not None or request.user.is_authenticated():
         login(request, user)
+        user_info = {
+            'username': user.username,
+            'name': user.first_name,
+            'lname': user.last_name,
+            'password': passw,
+            'email': user.email,
+        }
         if not cms_user_exists(user.username):
-            user_info = {
-                'username': user.username,
-                'name': user.first_name,
-                'lname': user.last_name,
-                'password': passw,
-                'email': user.email,
-            }
             cms_add_user(user_info)
+        else:
+            cms_edit_user(user_info)
         return redirect('cms_register:index')
     else:
         return render(request, "cms_register/login.html", {'Error': ok})
@@ -177,12 +179,12 @@ def register(request, x=0):
             if info['password'] != '':
                 user.set_password(info['password'])
                 subprocess.call(
-                    ['python', 'python/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
+                    ['python', 'scripts/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
                      info['name'],
                      '-ln', info['lname'], info['username']])
             else:
                 subprocess.call(
-                    ['python', 'python/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
+                    ['python', 'scripts/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
                      info['username']])
             user.save()
             done = True

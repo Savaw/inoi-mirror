@@ -11,6 +11,8 @@ def cms_user_exists(username):
 
 
 def cms_add_user(info):
+    print("adding")
+    print(info)
     return subprocess.call(['cmsAddUser',
                             '-p', info['password'],
                             '-e', info['email'],
@@ -20,6 +22,8 @@ def cms_add_user(info):
 
 
 def cms_edit_user(info):
+    print("editing")
+    print(info)
     return subprocess.call(['./scripts/cmsEditUser.py',
                             '-p', info['password'],
                             '-e', info['email'],
