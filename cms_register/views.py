@@ -167,8 +167,8 @@ def register(request, x=0):
             user.first_name = info['name']
             user.last_name = info['lname']
             user.save()
-            added = cms_add_user(info)
-            if not added:
+            not_added = cms_add_user(info)
+            if not not_added:
                 cms_edit_user(info)
             done = True
         if ok and x:
