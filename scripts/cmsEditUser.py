@@ -20,13 +20,13 @@ def edit_user(first_name, last_name, username, password, email, timezone, prefer
         if user is None:
             logger.error("User %s does not exist!", username)
             return False
-        if not first_name is None:
+        if first_name is not None:
             user.first_name = first_name
-        if not last_name is None:
+        if last_name is not None:
             user.last_name = last_name
-        if not email is None:
+        if email is not None:
             user.email = email
-        if not password is None:
+        if password is not None:
             user.password = password
         session.commit()
         logger.info("User %s edited sucsessfully.", username)
