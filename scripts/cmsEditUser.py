@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 def edit_user(first_name, last_name, username, password, email, timezone, preferred_languages):
     logger.info("Edit a user in the database.")
+    logger.info('{} {}'.format(username, password))
     with SessionGen() as session:
         user = session.query(User).filter(User.username == username).first()
         if user is None:
