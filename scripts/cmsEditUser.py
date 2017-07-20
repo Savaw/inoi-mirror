@@ -27,9 +27,12 @@ def edit_user(first_name, last_name, username, password, email, timezone, prefer
             user.last_name = last_name
         if email is not None:
             user.email = email
+        logger.info(user.password)
         if password is not None:
             user.password = password
+        logger.info(user.password)
         session.commit()
+        logger.info(user.password)
         logger.info("User %s edited sucsessfully.", username)
         return True
 
