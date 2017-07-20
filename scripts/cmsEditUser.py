@@ -9,13 +9,13 @@ import sys
 
 from cms import utf8_decoder
 from cms.db import SessionGen, User
+from cmscommon.crypto import hash_password
 
 logger = logging.getLogger(__name__)
 
 
 def edit_user(first_name, last_name, username, password, email, timezone, preferred_languages):
     logger.info("Edit a user in the database.")
-    logger.info('{} {}'.format(username, password))
     with SessionGen() as session:
         user = session.query(User).filter(User.username == username).first()
         if user is None:
@@ -27,12 +27,10 @@ def edit_user(first_name, last_name, username, password, email, timezone, prefer
             user.last_name = last_name
         if email is not None:
             user.email = email
-        logger.info(user.password)
         if password is not None:
-            user.password = password
-        logger.info(user.password)
+            method = 'plaintext'
+            user.password = hash_password(password, method)
         session.commit()
-        logger.info(user.password)
         logger.info("User %s edited sucsessfully.", username)
         return True
 
