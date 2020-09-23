@@ -1,7 +1,9 @@
 {% extends 'cms_register/base.html' %}
+{% load i18n %}
 
 {% block content %}
-      <h1 style="text-align: center">آزمون‌های عملی</h1>
+
+			<h1 style="text-align: center">{% trans "practical contests" %}</h1>
 			<br>
       <p class="lead">
 				{% for Ann in Announce %}

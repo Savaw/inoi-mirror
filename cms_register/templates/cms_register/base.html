@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +57,7 @@
         </div>
 
           <ul class="nav navbar-nav">
-            <li class="{% block contest %}{% endblock %}"><a href="{% url 'cms_register:contests' %}">مسابقات</a></li>
+            <li class="{% block contest %}{% endblock %}"><a href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a></li>
           </ul>
           
 
