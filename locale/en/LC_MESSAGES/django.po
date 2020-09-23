@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-23 19:17+0330\n"
+"POT-Creation-Date: 2020-09-23 19:41+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,149 @@ msgstr ""
 msgid "contests"
 msgstr "Contests"
 
-#: cms_register/templates/cms_register/index.html:7
+#: cms_register/templates/cms_register/base.html:70
+msgid "management"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:73
+msgid "profile"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:74
+msgid "exit"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:78
+#: cms_register/templates/cms_register/contests.html:59
+#: cms_register/templates/cms_register/login.html:19
+#: cms_register/templates/cms_register/login.html:37
+#: cms_register/templates/cms_register/recover_form.html:19
+#: cms_register/templates/cms_register/recover_form.html:37
+msgid "login"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:79
+#: cms_register/templates/cms_register/register.html:22
+msgid "register"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:94
+msgid "all right reserved part 1"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:94
+msgid "shaazzz"
+msgstr ""
+
+#: cms_register/templates/cms_register/base.html:94
+msgid "all right reserved part 2"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:15
+msgid "register successfull"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:23
+#, fuzzy
+#| msgid "contests"
+msgid "contest name"
+msgstr "Contests"
+
+#: cms_register/templates/cms_register/contests.html:24
+msgid "length"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:25
+msgid "register len"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:26
+#, fuzzy
+#| msgid "contests"
+msgid "contest len"
+msgstr "Contests"
+
+#: cms_register/templates/cms_register/contests.html:27
+msgid "partisipants"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:47
+msgid "scoreboard"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:51
+msgid "practice scoreboard"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:55
+msgid "do login"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:57
+msgid "do register"
+msgstr ""
+
+#: cms_register/templates/cms_register/contests.html:70
+msgid "register deadline"
+msgstr ""
+
+#: cms_register/templates/cms_register/index.html:6
 msgid "practical contests"
 msgstr "Practical Contests"
+
+#: cms_register/templates/cms_register/login.html:15
+#: cms_register/templates/cms_register/recover_form.html:15
+msgid "user pass wrong"
+msgstr ""
+
+#: cms_register/templates/cms_register/login.html:24
+#: cms_register/templates/cms_register/login.html:26
+#: cms_register/templates/cms_register/recover_form.html:24
+msgid "username"
+msgstr ""
+
+#: cms_register/templates/cms_register/login.html:30
+#: cms_register/templates/cms_register/login.html:32
+#: cms_register/templates/cms_register/recover_form.html:30
+msgid "password"
+msgstr ""
+
+#: cms_register/templates/cms_register/ranking.html:10
+msgid "access denied"
+msgstr ""
+
+#: cms_register/templates/cms_register/ranking.html:10
+msgid "contest not finished"
+msgstr ""
+
+#: cms_register/templates/cms_register/ranking.html:14
+msgid "scoreboard not available"
+msgstr ""
+
+#: cms_register/templates/cms_register/ranking.html:23
+msgid "unofficial"
+msgstr ""
+
+#: cms_register/templates/cms_register/recover_form.html:41
+msgid "forget password?"
+msgstr ""
+
+#: cms_register/templates/cms_register/register.html:18
+msgid "data submitted"
+msgstr ""
+
+#: cms_register/templates/cms_register/register.html:22
+msgid "setting"
+msgstr ""
+
+#: cms_register/templates/cms_register/register.html:25
+msgid "if no pass change keep empty"
+msgstr ""
+
+#: cms_register/templates/cms_register/register.html:54
+msgid "should not robot"
+msgstr ""
+
+#: cms_register/templates/cms_register/register.html:60
+msgid "submit"
+msgstr ""

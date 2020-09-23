@@ -7,11 +7,11 @@ active
 {% block content %}
 	{% if not exp and not request.user.is_staff %}
 		<div class="alert alert-warning" role="alert">
-		<strong>دسترسی مجاز نیست.</strong><br><br>مسابقه هنوز تمام نشده است.
+		<strong>{% trans "access denied" %}</strong><br><br>{% trans "contest not finished" %}
 		</div>
 	{% elif error %}
 		<div class="alert alert-info" role="alert">
-		<strong>دسترسی مجاز نیست.</strong><br><br>رده‌بندی هنوز وجود ندارد.
+		<strong>دسترسی مجاز نیست.</strong><br><br>{% trans "scoreboard not available" %}
 		</div>	
 	{% else %}
 			<h3 class="text-center">{{ contest.contest_name }}</h3>
@@ -20,7 +20,7 @@ active
 				<thead>
 					<tr>
 						{% for t in head %}
-							<th class="text-center">{{ t }} {% if un %} - غیررسمی {% endif %}</th>
+							<th class="text-center">{{ t }} {% if un %} - {% trans "unofficial" %} {% endif %}</th>
 						{% endfor %}
 					</tr>
 				</thead>

@@ -67,16 +67,16 @@
 								<a href="#" class="dropdown-toggle en-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ request.user.username }}  <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if request.user.is_staff %}
-									<li><a href="{% url 'admin:index' %}">مدیریت</a></li>
+									<li><a href="{% url 'admin:index' %}">{% trans "management" %}</a></li>
 									<li role="separator" class="divider"></li>
 									{% endif %}
-									<li><a href="{% url 'cms_register:profile' %}">نمایه</a></li>
-									<li><a href="{% url 'cms_register:logout' %}">خروج</a></li>
+									<li><a href="{% url 'cms_register:profile' %}">{% trans "profile" %}</a></li>
+									<li><a href="{% url 'cms_register:logout' %}">{% trans "exit" %}</a></li>
 								</ul>
 						</li>
 							{% else %}
-									<li class="{% block login %}{% endblock %}"><a href="{% url 'cms_register:login' %}">ورود</a></li>
-									<li class="{% block reg %}{% endblock %}"><a href="{% url 'cms_register:register' %}">ثبت نام</a></li>
+									<li class="{% block login %}{% endblock %}"><a href="{% url 'cms_register:login' %}">{% trans "login" %}</a></li>
+									<li class="{% block reg %}{% endblock %}"><a href="{% url 'cms_register:register' %}">{% trans "register" %}</a></li>
 							{% endif %}
 						</li>
           </ul>
@@ -91,7 +91,7 @@
 
 		<footer class="footer">
       <div class="container">
-        <p class="text-muted">تمامی حقوق برای <a href="http://shaazzz.ir">شاززز</a> محفوظ است.</p>
+        <p class="text-muted">{% trans "all right reserved part 1" %}<a href="http://shaazzz.ir">{% trans "shaazzz" %}</a> {% trans "all right reserved part 2" %}</p>
       </div>
     </footer>
 

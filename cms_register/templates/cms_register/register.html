@@ -15,14 +15,14 @@ active
 		{% if x %}
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		{% endif %}
-	اطلاعات ثبت شد.</div>
+		{% trans "data submitted" %}</div>
 	{% endif %}
 	{% if not ok or x %}
 	<div class="panel panel-primary">
-		<div class="panel-heading">{% if x %}تنظیمات{% else %}ثبت نام{% endif %}</div>
+		<div class="panel-heading">{% if x %}{% trans "setting" %}{% else %}{% trans "register" %}{% endif %}</div>
   	<div class="panel-body">
 		{% if x %}
-			<p style="font-size: 14px; color : blue; padding-bottom: 1em">اگر نمی‌خواهید رمزعبور را تغییر دهید، رمزعبور و تکرار آن را خالی بگذارید.</p>
+			<p style="font-size: 14px; color : blue; padding-bottom: 1em">{% trans "if no pass change keep empty" %}</p>
 		{% endif %}
       <form class="form-horizontal" method="post" action="{% if not x %}{% url 'cms_register:register' %}{% else %}{% url 'cms_register:profile' %}{% endif %}">
 		{% csrf_token %}
@@ -51,13 +51,13 @@ active
 					<div class="col-sm-offset-3 col-sm-9">
 						<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
 					{% if caper %}
-						<span class="help-block">لازم است که ربات نباشید.</span>
+						<span class="help-block">{% trans "should not robot" %}</span>
 					{% endif %}
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-9">
-						<button type="submit" class="btn btn-primary">ثبت</button>
+						<button type="submit" class="btn btn-primary">{% trans "submit" %}</button>
 					</div>
 				</div>
 			</form>
