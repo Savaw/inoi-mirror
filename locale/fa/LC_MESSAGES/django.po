@@ -24,15 +24,15 @@ msgstr "مسابقات"
 
 #: cms_register/templates/cms_register/base.html:70
 msgid "management"
-msgstr ""
+msgstr "مدیریت"
 
 #: cms_register/templates/cms_register/base.html:73
 msgid "profile"
-msgstr ""
+msgstr "پروفایل"
 
 #: cms_register/templates/cms_register/base.html:74
 msgid "exit"
-msgstr ""
+msgstr "خروج"
 
 #: cms_register/templates/cms_register/base.html:78
 #: cms_register/templates/cms_register/contests.html:60
@@ -41,72 +41,68 @@ msgstr ""
 #: cms_register/templates/cms_register/recover_form.html:20
 #: cms_register/templates/cms_register/recover_form.html:38
 msgid "login"
-msgstr ""
+msgstr "ورود"
 
 #: cms_register/templates/cms_register/base.html:79
 #: cms_register/templates/cms_register/register.html:23
 msgid "register"
-msgstr ""
+msgstr "ثبت نام"
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "all right reserved part 1"
-msgstr ""
+msgstr "تمامی حقوق توسّط "
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "shaazzz"
-msgstr ""
+msgstr "شاززز"
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "all right reserved part 2"
-msgstr ""
+msgstr "محفوظ است."
 
 #: cms_register/templates/cms_register/contests.html:16
 msgid "register successfull"
-msgstr ""
+msgstr "ثبت نام موفّقیّت آمیز بود."
 
 #: cms_register/templates/cms_register/contests.html:24
-#, fuzzy
-#| msgid "contests"
 msgid "contest name"
 msgstr "مسابقات"
 
 #: cms_register/templates/cms_register/contests.html:25
 msgid "length"
-msgstr ""
+msgstr "مهلت شرکت"
 
 #: cms_register/templates/cms_register/contests.html:26
 msgid "register len"
-msgstr ""
+msgstr "مهلت ثبت نام"
 
 #: cms_register/templates/cms_register/contests.html:27
-#, fuzzy
-#| msgid "contests"
 msgid "contest len"
-msgstr "مسابقات"
+msgstr "مدّت مسابقه"
 
 #: cms_register/templates/cms_register/contests.html:28
 msgid "partisipants"
-msgstr ""
+msgstr "تعداد شرکت‌کنندگان"
 
 #: cms_register/templates/cms_register/contests.html:48
 msgid "scoreboard"
-msgstr ""
+msgstr "جدول امتیازات"
 
 #: cms_register/templates/cms_register/contests.html:52
 msgid "practice scoreboard"
-msgstr ""
+msgstr "امتیازات تمرینی"
 
 #: cms_register/templates/cms_register/contests.html:56
 msgid "do login"
-msgstr ""
+msgstr "وارد شوید"
 
 #: cms_register/templates/cms_register/contests.html:58
 msgid "do register"
-msgstr ""
+msgstr "ثبت نام کنید"
 
 #: cms_register/templates/cms_register/contests.html:71
 msgid "register deadline"
-msgstr ""
+msgstr "مهلت ثبت نام"
 
 #: cms_register/templates/cms_register/index.html:6
 msgid "practical contests"
@@ -115,122 +111,122 @@ msgstr "آزمون های عملی"
 #: cms_register/templates/cms_register/login.html:16
 #: cms_register/templates/cms_register/recover_form.html:16
 msgid "user pass wrong"
-msgstr ""
+msgstr "نام کاربری یا رمز عبور اشتباه است"
 
 #: cms_register/templates/cms_register/login.html:25
 #: cms_register/templates/cms_register/login.html:27
 #: cms_register/templates/cms_register/recover_form.html:25
 #: cms_register/views.py:90 scoreboard/templates/scoreboard/index.html:8
 msgid "username"
-msgstr ""
+msgstr "نام کاربری"
 
 #: cms_register/templates/cms_register/login.html:31
 #: cms_register/templates/cms_register/login.html:33
 #: cms_register/templates/cms_register/recover_form.html:31
 #: cms_register/views.py:92
 msgid "password"
-msgstr ""
+msgstr "رمز عبور"
 
 #: cms_register/templates/cms_register/ranking.html:11
 msgid "access denied"
-msgstr ""
+msgstr "شما به این قسمت دسترسی ندارید!"
 
 #: cms_register/templates/cms_register/ranking.html:11
 msgid "contest not finished"
-msgstr ""
+msgstr "مسابقه تمام نشده است"
 
 #: cms_register/templates/cms_register/ranking.html:15
 msgid "scoreboard not available"
-msgstr ""
+msgstr "جدول امتیازات حاضر نیست."
 
 #: cms_register/templates/cms_register/ranking.html:24
 msgid "unofficial"
-msgstr ""
+msgstr "غیر رسمی"
 
 #: cms_register/templates/cms_register/recover_form.html:42
 msgid "forget password?"
-msgstr ""
+msgstr "فراموشی رمز عبور"
 
 #: cms_register/templates/cms_register/register.html:19
 msgid "data submitted"
-msgstr ""
+msgstr "اطّلاعات با موفّقیّت ارسال شد"
 
 #: cms_register/templates/cms_register/register.html:23
 msgid "setting"
-msgstr ""
+msgstr "تنظیمات"
 
 #: cms_register/templates/cms_register/register.html:26
 msgid "if no pass change keep empty"
-msgstr ""
+msgstr "در صورت عدم تمایل به تغییر رمز عبور، ورودی‌های مربوطه را خالی بگذارید."
 
 #: cms_register/templates/cms_register/register.html:55
 msgid "should not robot"
-msgstr ""
+msgstr "لازم است ربات نباشید!"
 
 #: cms_register/templates/cms_register/register.html:61
 msgid "submit"
-msgstr ""
+msgstr "ارسال"
 
 #: cms_register/views.py:91
 msgid "email"
-msgstr ""
+msgstr "ایمیل"
 
 #: cms_register/views.py:93
 msgid "password repeat"
-msgstr ""
+msgstr "تکرار پسورد"
 
 #: cms_register/views.py:94
 msgid "name"
-msgstr ""
+msgstr "نام"
 
 #: cms_register/views.py:95
 msgid "family name"
-msgstr ""
+msgstr "نام خانوادگی"
 
 #: cms_register/views.py:120
 msgid "this field is mandatory"
-msgstr ""
+msgstr "این مورد لازم است"
 
 #: cms_register/views.py:126
 msgid "most 150 chars"
-msgstr ""
+msgstr "بیش از حد طولانی است"
 
 #: cms_register/views.py:128
 msgid "only num latin underline"
-msgstr ""
+msgstr "تنها شامل حروف لاتین و اعداد باشد"
 
 #: cms_register/views.py:130
 msgid "duplicate username"
-msgstr ""
+msgstr "نام کاربری قبلا استفاده شده است"
 
 #: cms_register/views.py:132
 msgid "invalid email"
-msgstr ""
+msgstr "ایمیل نامعتبر"
 
 #: cms_register/views.py:136
 msgid "at least 8 char"
-msgstr ""
+msgstr "حداقل ۸ کاراکتر"
 
 #: cms_register/views.py:138
 msgid "at least 1 num"
-msgstr ""
+msgstr "حداقل شامل یک رقم باشد"
 
 #: cms_register/views.py:140
 msgid "at least 1 latin"
-msgstr ""
+msgstr "حداقل شامل یک حرف لاتین باشد"
 
 #: cms_register/views.py:142
 msgid "password dont match"
-msgstr ""
+msgstr "رمز عبورهای وارد شده منطبق نیستند"
 
 #: cms_register/views.py:144
 msgid "name must english"
-msgstr ""
+msgstr "حروف نام باید لاتین باشد"
 
 #: cms_register/views.py:146
 msgid "family must english"
-msgstr ""
+msgstr "حروف نام خانوادگی باید لاتین باشد"
 
 #: scoreboard/templates/scoreboard/index.html:9
 msgid "accepted"
-msgstr ""
+msgstr "صحیح"

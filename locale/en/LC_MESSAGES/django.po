@@ -70,7 +70,7 @@ msgstr "Title"
 
 #: cms_register/templates/cms_register/contests.html:25
 msgid "length"
-msgstr "Duration"
+msgstr "Deadline"
 
 #: cms_register/templates/cms_register/contests.html:26
 msgid "register len"
