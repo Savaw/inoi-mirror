@@ -38,7 +38,7 @@ def loginv(request):
         passw = request.POST['password']
         ok = True
     user = authenticate(username=usern, password=passw)
-    if user is not None or request.user.is_authenticated():
+    if user is not None or request.user.is_authenticated:
         login(request, user)
         user_info = {
             'username': user.username,
@@ -47,10 +47,10 @@ def loginv(request):
             'password': passw,
             'email': user.email,
         }
-        if not cms_user_exists(user.username):
-            cms_add_user(user_info)
-        else:
-            cms_edit_user(user_info)
+#        if not cms_user_exists(user.username):
+#            cms_add_user(user_info)
+#        else:
+#            cms_edit_user(user_info)
         return redirect('cms_register:index')
     else:
         return render(request, "cms_register/login.html", {'Error': ok})
@@ -81,9 +81,9 @@ def register(request, x=0):
         if error[field] == '':
             error[field] = val
 
-    if request.user.is_authenticated() and not x:
+    if request.user.is_authenticated and not x:
         return redirect('cms_register:index')
-    if not request.user.is_authenticated() and x:
+    if not request.user.is_authenticated and x:
         return redirect('cms_register:index')
     fields = ['username', 'email', 'password', 'password2', 'name', 'lname']
     place = {'username': 'نام کاربری',
@@ -167,9 +167,9 @@ def register(request, x=0):
             user.first_name = info['name']
             user.last_name = info['lname']
             user.save()
-            not_added = cms_add_user(info)
-            if not_added:
-                cms_edit_user(info)
+            #not_added = cms_add_user(info)
+            #if not_added:
+            #    cms_edit_user(info)
             done = True
         if ok and x:
             user = User.objects.get(username=info['username'])
@@ -178,14 +178,14 @@ def register(request, x=0):
             user.email = info['email']
             if info['password'] != '':
                 user.set_password(info['password'])
-                subprocess.call(
-                    ['python', 'scripts/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
-                     info['name'],
-                     '-ln', info['lname'], info['username']])
-            else:
-                subprocess.call(
-                    ['python', 'scripts/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
-                     info['username']])
+#                subprocess.call(
+#                    ['python', 'scripts/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
+#                     info['name'],
+#                     '-ln', info['lname'], info['username']])
+#            else:
+#                subprocess.call(
+#                    ['python', 'scripts/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
+#                     info['username']])
             user.save()
             done = True
     info['password'] = info['password2'] = ''
@@ -217,7 +217,7 @@ def format_timedelta(td, type):
 
 def contest_view(request):
     done = False
-    if request.method == 'POST' and request.user.is_authenticated() and request.POST.get('register') == 'register':
+    if request.method == 'POST' and request.user.is_authenticated and request.POST.get('register') == 'register':
         cid = request.POST.get('cid');
         con = Contest.objects.get(id=cid);
         if Participant.objects.filter(user=request.user, contest=con).count() == 0:
@@ -234,7 +234,6 @@ def contest_view(request):
     dur = {}
     need = {}
     cdown = {}
-    locale.setlocale(locale.LC_ALL, 'fa_IR')
     for contest in clist:
         cdown[contest.id] = max(0, int((contest.start_time - timezone.now() + contest.duration).total_seconds()))
         tmp = jdatetime.datetime.fromgregorian(datetime=timezone.localtime(contest.start_time))
@@ -247,7 +246,7 @@ def contest_view(request):
         print(contest.start_time + contest.duration)
         ended[contest.id] = (timezone.now() > (contest.start_time + contest.contest_time))
         registered[contest.id] = False
-        if request.user.is_authenticated() and contest.participant_set.filter(user=request.user).count() > 0:
+        if request.user.is_authenticated and contest.participant_set.filter(user=request.user).count() > 0:
             registered[contest.id] = True
     return render(request, "cms_register/contests.html",
                   {'contests': clist, 'date': date, 'time': time, 'expired': expired, 'registered': registered,

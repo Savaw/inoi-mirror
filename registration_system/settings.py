@@ -23,7 +23,7 @@ SECRET_KEY = '!x+yg5#hb%vd$06^)_q!4k*!6m)6rf3&5s_k%8yv%cybk*_)=2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['judge.cf', 'www.judge.cf', 'localhost']
+ALLOWED_HOSTS = []
 
 # Google reCAPTCHA
 
@@ -45,10 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'sorl.thumbnail',
-    # 'newsletter',
+    'captcha',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,3 +133,8 @@ STATIC_ROOT = '/var/www/html/registration_system/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-messages/'
 DEFAULT_FROM_EMAIL = 'info@judge.cf'
+
+try:
+    from .local_settings import *
+except:
+    pass

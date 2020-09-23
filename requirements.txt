@@ -1,5 +1,9 @@
-sorl-thumbnail
-django-ordered-model
-django-extensions
-django
-jdatetime
+asgiref==3.2.10
+Django==3.1.1
+django-extensions==3.0.9
+django-ordered-model==3.4.1
+django-recaptcha==2.0.6
+jdatetime==3.6.2
+pytz==2020.1
+sorl-thumbnail==12.6.3
+sqlparse==0.3.1
