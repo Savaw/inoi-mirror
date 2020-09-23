@@ -24,15 +24,15 @@ msgstr "Contests"
 
 #: cms_register/templates/cms_register/base.html:70
 msgid "management"
-msgstr ""
+msgstr "Management"
 
 #: cms_register/templates/cms_register/base.html:73
 msgid "profile"
-msgstr ""
+msgstr "Profile"
 
 #: cms_register/templates/cms_register/base.html:74
 msgid "exit"
-msgstr ""
+msgstr "Exit"
 
 #: cms_register/templates/cms_register/base.html:78
 #: cms_register/templates/cms_register/contests.html:60
@@ -41,72 +41,68 @@ msgstr ""
 #: cms_register/templates/cms_register/recover_form.html:20
 #: cms_register/templates/cms_register/recover_form.html:38
 msgid "login"
-msgstr ""
+msgstr "Login"
 
 #: cms_register/templates/cms_register/base.html:79
 #: cms_register/templates/cms_register/register.html:23
 msgid "register"
-msgstr ""
+msgstr "Register"
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "all right reserved part 1"
-msgstr ""
+msgstr "All right reserved by "
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "shaazzz"
-msgstr ""
+msgstr "Shaazzz"
 
 #: cms_register/templates/cms_register/base.html:94
 msgid "all right reserved part 2"
-msgstr ""
+msgstr " "
 
 #: cms_register/templates/cms_register/contests.html:16
 msgid "register successfull"
-msgstr ""
+msgstr "Registered successfully"
 
 #: cms_register/templates/cms_register/contests.html:24
-#, fuzzy
-#| msgid "contests"
 msgid "contest name"
-msgstr "Contests"
+msgstr "Title"
 
 #: cms_register/templates/cms_register/contests.html:25
 msgid "length"
-msgstr ""
+msgstr "Duration"
 
 #: cms_register/templates/cms_register/contests.html:26
 msgid "register len"
-msgstr ""
+msgstr "Registration duration"
 
 #: cms_register/templates/cms_register/contests.html:27
-#, fuzzy
-#| msgid "contests"
 msgid "contest len"
-msgstr "Contests"
+msgstr "Contest duration"
 
 #: cms_register/templates/cms_register/contests.html:28
 msgid "partisipants"
-msgstr ""
+msgstr "# Participants"
 
 #: cms_register/templates/cms_register/contests.html:48
 msgid "scoreboard"
-msgstr ""
+msgstr "Scoreboard"
 
 #: cms_register/templates/cms_register/contests.html:52
 msgid "practice scoreboard"
-msgstr ""
+msgstr "Practice scoreboard"
 
 #: cms_register/templates/cms_register/contests.html:56
 msgid "do login"
-msgstr ""
+msgstr "Login"
 
 #: cms_register/templates/cms_register/contests.html:58
 msgid "do register"
-msgstr ""
+msgstr "Register"
 
 #: cms_register/templates/cms_register/contests.html:71
 msgid "register deadline"
-msgstr ""
+msgstr "Registration deadline"
 
 #: cms_register/templates/cms_register/index.html:6
 msgid "practical contests"
@@ -115,121 +111,121 @@ msgstr "Practical Contests"
 #: cms_register/templates/cms_register/login.html:16
 #: cms_register/templates/cms_register/recover_form.html:16
 msgid "user pass wrong"
-msgstr ""
+msgstr "Wrong username or password"
 
 #: cms_register/templates/cms_register/login.html:25
 #: cms_register/templates/cms_register/login.html:27
 #: cms_register/templates/cms_register/recover_form.html:25
 #: cms_register/views.py:90 scoreboard/templates/scoreboard/index.html:8
 msgid "username"
-msgstr ""
+msgstr "Username"
 
 #: cms_register/templates/cms_register/login.html:31
 #: cms_register/templates/cms_register/login.html:33
 #: cms_register/templates/cms_register/recover_form.html:31
 #: cms_register/views.py:92
 msgid "password"
-msgstr ""
+msgstr "Password"
 
 #: cms_register/templates/cms_register/ranking.html:11
 msgid "access denied"
-msgstr ""
+msgstr "Access denied!"
 
 #: cms_register/templates/cms_register/ranking.html:11
 msgid "contest not finished"
-msgstr ""
+msgstr "Contest has not finished yet"
 
 #: cms_register/templates/cms_register/ranking.html:15
 msgid "scoreboard not available"
-msgstr ""
+msgstr "Scoreboard not available"
 
 #: cms_register/templates/cms_register/ranking.html:24
 msgid "unofficial"
-msgstr ""
+msgstr "Unofficial"
 
 #: cms_register/templates/cms_register/recover_form.html:42
 msgid "forget password?"
-msgstr ""
+msgstr "Forgot password"
 
 #: cms_register/templates/cms_register/register.html:19
 msgid "data submitted"
-msgstr ""
+msgstr "Submitted data successfully"
 
 #: cms_register/templates/cms_register/register.html:23
 msgid "setting"
-msgstr ""
+msgstr "Settings"
 
 #: cms_register/templates/cms_register/register.html:26
 msgid "if no pass change keep empty"
-msgstr ""
+msgstr "Leave password fields empty if you don't want to change password"
 
 #: cms_register/templates/cms_register/register.html:55
 msgid "should not robot"
-msgstr ""
+msgstr "You should not be a robot"
 
 #: cms_register/templates/cms_register/register.html:61
 msgid "submit"
-msgstr ""
+msgstr "Submit"
 
 #: cms_register/views.py:91
 msgid "email"
-msgstr ""
+msgstr "Email address"
 
 #: cms_register/views.py:93
 msgid "password repeat"
-msgstr ""
+msgstr "Repeat password"
 
 #: cms_register/views.py:94
 msgid "name"
-msgstr ""
+msgstr "First name"
 
 #: cms_register/views.py:95
 msgid "family name"
-msgstr ""
+msgstr "Last name"
 
 #: cms_register/views.py:120
 msgid "this field is mandatory"
-msgstr ""
+msgstr "Required!"
 
 #: cms_register/views.py:126
 msgid "most 150 chars"
-msgstr ""
+msgstr "At most 150 characters"
 
 #: cms_register/views.py:128
 msgid "only num latin underline"
-msgstr ""
+msgstr "Invalid characters in username(only [a-zA-Z0-9])"
 
 #: cms_register/views.py:130
 msgid "duplicate username"
-msgstr ""
+msgstr "This username is already taken"
 
 #: cms_register/views.py:132
 msgid "invalid email"
-msgstr ""
+msgstr "Invalid email address"
 
 #: cms_register/views.py:136
 msgid "at least 8 char"
-msgstr ""
+msgstr "Should contain at least 8 characters"
 
 #: cms_register/views.py:138
 msgid "at least 1 num"
-msgstr ""
+msgstr "Password must contain at least one digit"
 
 #: cms_register/views.py:140
 msgid "at least 1 latin"
-msgstr ""
+msgstr "Password must contain at least one latin letter"
 
 #: cms_register/views.py:142
 msgid "password dont match"
-msgstr ""
+msgstr "Passwords do not match"
 
 #: cms_register/views.py:144
 msgid "name must english"
-msgstr ""
+msgstr "First name must contain latin letters"
 
 #: cms_register/views.py:146
 msgid "family must english"
-msgstr ""
+msgstr "Last name must contain latin letters"
 
 #: scoreboard/templates/scoreboard/index.html:9
 msgid "accepted"
