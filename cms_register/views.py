@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaulttags import register
 from django.utils import timezone
+from django.utils.translation import gettext as _ 
 
 from cms_register.utils import password_check, persian_num, comp, cms_user_exists, cms_add_user, cms_edit_user
 from .models import Announcement, Contest, Participant
@@ -86,12 +87,12 @@ def register(request, x=0):
     if not request.user.is_authenticated and x:
         return redirect('cms_register:index')
     fields = ['username', 'email', 'password', 'password2', 'name', 'lname']
-    place = {'username': 'نام کاربری',
-             'email': 'رایانامه',
-             'password': 'رمزعبور',
-             'password2': 'تکرار رمزعبور',
-             'name': 'نام',
-             'lname': 'نام خانوادگی',
+    place = {'username': _("username"),
+             'email': _("email"),
+             'password': _("password"),
+             'password2': _("password repeat"),
+             'name': _("name"),
+             'lname': _("family name"),
              # 'grade' : 'پایه',
              # 'school' : 'مدرسه',
              }
@@ -116,33 +117,33 @@ def register(request, x=0):
         for field in fields:
             if getInfo(field) == None:
                 if not x or (field != 'password' and field != 'password2' and field != 'username'):
-                    addError(field, 'این فیلد لازم است.')
+                    addError(field, _("this field is mandatory"))
             else:
                 info[field] = getInfo(field)
         if x:
             info['username'] = request.user.username
         if len(info['username']) > 150:
-            addError('username', 'حداکثر ۱۵۰ کاراکتر')
+            addError('username', _("most 150 chars"))
         if not re.match("^[A-Za-z0-9_-]+$", info['username']):
-            addError('username', 'تنها حروف انگلیسی، ارقام، خط تیره و آندرلاین مجاز است.')
+            addError('username', _("only num latin underline"))
         if not x and User.objects.filter(username=info['username']).exists():
-            addError('username', 'این نام کاربری انتخاب شده است.')
+            addError('username', _("duplicate username"))
         if not re.match(r"[^@]+@[^@]+\.[^@]+", info['email']):
-            addError('email', 'ایمیل معتبر وارد کنید.')
+            addError('email', _("invalid email"))
         if info['password'] != '' or info['password2'] != '':
             passdet = password_check(info['password'])
             if passdet['length_error']:
-                addError('password', 'حداقل ۸ کاراکتر ضروری است.')
+                addError('password', _("at least 8 char"))
             if passdet['digit_error']:
-                addError('password', 'حداقل یک کاراکتر رقم ضروری است.')
+                addError('password', _("at least 1 num"))
             if passdet['lowercase_error'] and passdet['uppercase_error']:
-                addError('password', 'حداقل یک حرف لاتین ضروری است.')
+                addError('password', _("at least 1 latin"))
             if info['password'] != info['password2']:
-                addError('password2', 'با رمز عبور مطابقت ندارد.')
+                addError('password2', _("password dont match"))
         if not re.match(r"^[a-zA-Z ]+$", info['name']):
-            addError('name', 'نام خود را انگلیسی وارد کنید.(حروف و فاصله)')
+            addError('name', _("name must english"))
         if not re.match(r"^[a-zA-Z ]+$", info['lname']):
-            addError('lname', 'نام خانوادگی خود را انگلیسی وارد کنید.(حروف و فاصله)')
+            addError('lname', _("family must english"))
         ok = True
         for key in error:
             if error[key] != '':

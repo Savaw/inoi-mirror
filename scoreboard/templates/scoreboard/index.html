@@ -1,11 +1,12 @@
 {% extends 'scoreboard/base.html' %}
+{% load i18n %}
 
 {% block content %}
 	<p class="text-center">From {{ from }} </p></br>
 	<table class="table" dir="ltr">
 		<tr>
-			<th class="text-center"> Username </th>
-			<th class="text-center"> Accepted </th>
+			<th class="text-center"> {% trans "username" %} </th>
+			<th class="text-center"> {% trans "accepted" %} </th>
 		</tr>
 		{% for user in mems %}
 			<tr>
