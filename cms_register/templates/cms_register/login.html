@@ -16,22 +16,18 @@ active
 			{% trans "user pass wrong" %}
     </div>
 		{% endif %}
-	<div class="panel panel-primary">
-		<div class="panel-heading">{% trans "login" %}</div>
-  	<div class="panel-body">
+	<div class="card">
+		<div class="card-header">{% trans "login" %}</div>
+  	<div class="card-body">
       <form class="form-horizontal" method="post" action="{% url 'cms_register:login' %}">
 		{% csrf_token %}
 				<div class="form-group">
-					<label for="username" class="col-sm-3 control-label">{% trans "username" %}</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="usernamse" name="username" placeholder="{% trans 'username' %}">
-					</div>
+					<label for="username" class="control-label">{% trans "username" %}</label>
+					<input type="text" class="form-control" id="usernamse" name="username" placeholder="{% trans 'username' %}">
 				</div>
 				<div class="form-group">
-					<label for="password" class="col-sm-3 control-label">{% trans "password" %}</label>
-					<div class="col-sm-9">
-						<input type="password" class="form-control" id="password" name="password" placeholder="{% trans 'password' %}">
-					</div>
+					<label for="password" class="control-label">{% trans "password" %}</label>
+					<input type="password" class="form-control" id="password" name="password" placeholder="{% trans 'password' %}">
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-9">
