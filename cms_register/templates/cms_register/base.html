@@ -4,115 +4,115 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<script>
-		function toPersianNum(num, dontTrim) {
-			var i = 0,
-				dontTrim = dontTrim || false,
-				num = dontTrim ? num.toString() : num.toString().trim(),
-				len = num.length,
-				res = '',
-				pos,
-				persianNumbers = typeof persianNumber == 'undefined' ?
-					['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
-					persianNumbers;
-			for (; i < len; i++)
-				if ((pos = persianNumbers[num.charAt(i)]))
-					res += pos;
-				else
-					res += num.charAt(i);
-			return res;
-		}
-	</script>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <head>
+        <script>
+            function toPersianNum(num, dontTrim) {
+                var i = 0,
+                    dontTrim = dontTrim || false,
+                    num = dontTrim ? num.toString() : num.toString().trim(),
+                    len = num.length,
+                    res = '',
+                    pos,
+                    persianNumbers = typeof persianNumber == 'undefined' ?
+                    ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
+                    persianNumbers;
+                for (; i < len; i++)
+                    if ((pos = persianNumbers[num.charAt(i)]))
+                        res += pos;
+                else
+                    res += num.charAt(i);
+                return res;
+            }
+        </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-	<title>شاززز - Shaazzz</title>
+        <title>شاززز - Shaazzz</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+                               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 
-		<style>
-			html {
-		position: relative;
-		min-height: 100%;
-	}
-	body {
-		margin-bottom: 70px; /* Margin bottom by footer height */
-	}
-	.footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		height: 60px; /* Set the fixed height of the footer here */
-		line-height: 60px; /* Vertically center the text there */
-		background-color: #f5f5f5;
-	}
-	
-		</style>
-	
+        <style>
+html {
+    position: relative;
+    min-height: 100%;
+}
+    body {
+        margin-bottom: 70px; /* Margin bottom by footer height */
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px; /* Set the fixed height of the footer here */
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #f5f5f5;
+    }
 
-	{% block header %}
-	{% endblock %}
+        </style>
 
-</head>
 
-<body role="document">
+        {% block header %}
+        {% endblock %}
 
-	<nav class="navbar navbar-dark navbar-expand-md bg-primary">
-		<a class="navbar-brand" href="/"><img src="{% static 'cms_register/logo.png' %}"
-				style="margin-top: -0.5em !important"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<div class="nav navbar-nav">
-				<a class="nav-item nav-link" href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a>
+    </head>
 
-				{% if request.user.is_authenticated %}
-				{% if request.user.is_staff %}
-				<a class="nav-item nav-link" href="{% url 'admin:index' %}">{% trans "management" %}</a>
-				{% endif %}
-				<a class="nav-item nav-link" href="{% url 'cms_register:profile' %}">{% trans "profile" %}</a>
-				<a class="nav-item nav-link" href="{% url 'cms_register:logout' %}">{% trans "exit" %}</a> </ul>
-				{% else %}
-				<a class="nav-item nav-link" href="{% url 'cms_register:login' %}">{% trans "login" %}</a>
-				<a class="nav-item nav-link" href="{% url 'cms_register:register' %}">{% trans "register" %}</a>
-				{% endif %}
-			</div>
-		</div><!-- /.container-fluid -->
-	</nav>
+    <body role="document">
 
-	<div style="height: 1rem"></div>
+        <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+            <a class="navbar-brand" href="/"><img src="{% static 'cms_register/logo.png' %}"
+                                                  style="margin-top: -0.5em !important"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                                                                                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="nav navbar-nav">
+                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a>
 
-	<main role="main" class="container">
-		{% block content %}
-		{% endblock %}
-	</main>
+                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_staff %}
+                    <a class="nav-item nav-link text-dark" href="{% url 'admin:index' %}">{% trans "management" %}</a>
+                    {% endif %}
+                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:profile' %}">{% trans "profile" %}</a>
+                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:logout' %}">{% trans "exit" %}</a> 
+                    {% else %}
+                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:login' %}">{% trans "login" %}</a>
+                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:register' %}">{% trans "register" %}</a>
+                    {% endif %}
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
 
-	<footer class="footer">
-		<div class="container">
-			<p class="text-muted">{% trans "all right reserved part 1" %}<a href="http://shaazzz.ir">{% trans "shaazzz" %}</a>
-				{% trans "all right reserved part 2" %}</p>
-		</div>
-	</footer>
+        <div style="height: 1rem"></div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="{% static 'cms_register/js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript">
-		$('button').popover();
-	</script>
-</body>
+        <main role="main" class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">{% trans "all right reserved part 1" %}<a href="http://shaazzz.ir">{% trans "shaazzz" %}</a>
+                {% trans "all right reserved part 2" %}</p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="{% static 'cms_register/js/bootstrap.min.js' %}"></script>
+            <script type="text/javascript">
+                $('button').popover();
+            </script>
+    </body>
 
 </html>

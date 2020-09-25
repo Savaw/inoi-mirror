@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block header %}
-	<script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
 {% endblock %}
 
 {% block reg %}
@@ -11,59 +11,68 @@ active
 
 {% block content %}
 
-	{% if ok %}
-	<div class="alert alert-success alert-dismissible fade in" role="alert">
-		{% if x %}
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		{% endif %}
-		{% trans "data submitted" %}</div>
-	{% endif %}
-	{% if not ok or x %}
-	<div class="card">
-		<div class="card-header">{% if x %}{% trans "setting" %}{% else %}{% trans "register" %}{% endif %}</div>
-  	<div class="card-body"><div class="row"><div class="col-md-12">
-		{% if x %}
-			<p style="font-size: 14px; color : blue; padding-bottom: 1em">{% trans "if no pass change keep empty" %}</p>
-		{% endif %}
-      <form class="form-horizontal" method="post" action="{% if not x %}{% url 'cms_register:register' %}{% else %}{% url 'cms_register:profile' %}{% endif %}">
-		{% csrf_token %}
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        {% if ok %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% if x %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {% endif %}
+            {% trans "data submitted" %}
+        </div>
+        {% endif %}
+        {% if not ok or x %}
+        <div class="card">
+            <div class="card-header">{% if x %}{% trans "setting" %}{% else %}{% trans "register" %}{% endif %}</div>
+            <div class="card-body"><div class="row"><div class="col-md-12">
+                        {% if x %}
+                        <p style="font-size: 14px; color : blue; padding-bottom: 1em">{% trans "if no pass change keep empty" %}</p>
+                        {% endif %}
+                        <form class="form-horizontal" method="post" action="{% if not x %}{% url 'cms_register:register' %}{% else %}{% url 'cms_register:profile' %}{% endif %}">
+                            {% csrf_token %}
 
-					{% for key in info %}
-				<div class="form-group {% if error|get_item:key != '' %}has-error{% endif %}">
-						<label for="{{ key }}" class="control-label">{{ place|get_item:key }}</label>
-						<div>
-							{% if key == 'grade' %}
-							<select class="form-control" id="{{ key }}" name="{{ key }}">
-								  <option class="form-control" value="دهم">دهم</option>
-								  <option class="form-control" value="سوم">سوم</option>
-								  <option class="form-control"  value="سایر">سایر</option>
-							</select>
-								
-							{% else %}
-							<input {% if x and key == 'username' %}disabled="disabled"{% endif %} type="{{ type|get_item:key }}" class="form-control" id="{{ key }}" name="{{ key }}" placeholder="{{ place|get_item:key }}" value="{{ info|get_item:key }}">
-							{% endif %}
-							{% if error|get_item:key != '' %}
-							 <span class="help-block">{{ error|get_item:key }}</span>
-							{% endif %}
-						</div>
-				</div>
-					{% endfor %}
-				<div class="form-group {% if caper %}has-error{% endif %}">
-					<div class="col-sm-offset-3 col-sm-9">
-						<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
-					{% if caper %}
-						<span class="help-block">{% trans "should not robot" %}</span>
-					{% endif %}
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-9">
-						<button type="submit" class="btn btn-primary">{% trans "submit" %}</button>
-					</div>
-				</div>
-			</form>
-		</div></div></div>
-	</div>
-	{% endif %}
+                            {% for key in info %}
+                            <div class="form-group {% if error|get_item:key != '' %}text-danger{% endif %}">
+                                <label for="{{ key }}" class="control-label">{{ place|get_item:key }}</label>
+                                <div>
+                                    {% if key == 'grade' %}
+                                    <select class="form-control" id="{{ key }}" name="{{ key }}">
+                                        <option class="form-control" value="دهم">دهم</option>
+                                        <option class="form-control" value="سوم">سوم</option>
+                                        <option class="form-control"  value="سایر">سایر</option>
+                                    </select>
+
+                                    {% else %}
+                                    <input {% if x and key == 'username' %}disabled="disabled"{% endif %} type="{{ type|get_item:key }}" class="form-control" id="{{ key }}" name="{{ key }}" placeholder="{{ place|get_item:key }}" value="{{ info|get_item:key }}">
+                                    {% endif %}
+                                    {% if error|get_item:key != '' %}
+                                    <span class="help-block">{{ error|get_item:key }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="form-group {% if caper %}has-error{% endif %}">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+                                    {% if caper %}
+                                    <span class="help-block">{% trans "should not robot" %}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-primary">{% trans "submit" %}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div></div></div>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+{% endif %}
 {% endblock %}
 
