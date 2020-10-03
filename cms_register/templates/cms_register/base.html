@@ -30,7 +30,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>شاززز - Shaazzz</title>
+        <title>INOI Judge</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                                integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -67,7 +67,7 @@ html {
 
     <body role="document">
 
-        <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark text-white">
             <a class="navbar-brand" href="/"><img src="{% static 'cms_register/logo.png' %}"
                                                   style="margin-top: -0.5em !important"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -76,19 +76,20 @@ html {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="nav navbar-nav">
-                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a>
-
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a>
+                </div>
+				<div class="nav navbar-nav ml-auto">
                     {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
-                    <a class="nav-item nav-link text-dark" href="{% url 'admin:index' %}">{% trans "management" %}</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'admin:index' %}">{% trans "management" %}</a>
                     {% endif %}
-                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:profile' %}">{% trans "profile" %}</a>
-                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:logout' %}">{% trans "exit" %}</a> 
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:profile' %}">{% trans "profile" %}</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:logout' %}">{% trans "exit" %}</a> 
                     {% else %}
-                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:login' %}">{% trans "login" %}</a>
-                    <a class="nav-item nav-link text-dark" href="{% url 'cms_register:register' %}">{% trans "register" %}</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:login' %}">{% trans "login" %}</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:register' %}">{% trans "register" %}</a>
                     {% endif %}
-                </div>
+				</div>
             </div><!-- /.container-fluid -->
         </nav>
 
