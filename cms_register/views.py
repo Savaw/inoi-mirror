@@ -48,10 +48,10 @@ def loginv(request):
             'password': passw,
             'email': user.email,
         }
-#        if not cms_user_exists(user.username):
-#            cms_add_user(user_info)
-#        else:
-#            cms_edit_user(user_info)
+        if not cms_user_exists(user.username):
+            cms_add_user(user_info)
+        else:
+            cms_edit_user(user_info)
         return redirect('cms_register:index')
     else:
         return render(request, "cms_register/login.html", {'Error': ok})
