@@ -74,7 +74,7 @@ msgstr "Start"
 
 #: cms_register/templates/cms_register/contests.html:26
 msgid "register len"
-msgstr "Registration Time"
+msgstr "End"
 
 #: cms_register/templates/cms_register/contests.html:27
 msgid "contest len"
