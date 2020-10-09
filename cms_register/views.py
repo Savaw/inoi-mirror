@@ -205,8 +205,8 @@ def format_timedelta(td, type):
         else:
             return '%s:%s:%s' % (hours, minutes, seconds)
     if hours == 0:
-        return '%s روز' % (days)
-    return '%s روز و %s ساعت' % (days, hours)
+        return '%s Days' % (days)
+    return '%s Days & %s Hours' % (days, hours)
 
 
 def contest_view(request):
