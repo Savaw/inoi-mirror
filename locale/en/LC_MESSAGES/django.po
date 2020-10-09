@@ -70,15 +70,15 @@ msgstr "Title"
 
 #: cms_register/templates/cms_register/contests.html:25
 msgid "length"
-msgstr "Deadline"
+msgstr "Start"
 
 #: cms_register/templates/cms_register/contests.html:26
 msgid "register len"
-msgstr "Registration duration"
+msgstr "Registration Time"
 
 #: cms_register/templates/cms_register/contests.html:27
 msgid "contest len"
-msgstr "Contest duration"
+msgstr "Contest Time"
 
 #: cms_register/templates/cms_register/contests.html:28
 msgid "partisipants"
