@@ -37,7 +37,7 @@ def cms_edit_user(info):
             '-ln', info['lname'],
             ]
     if info.get('password'):
-        args.extend([-p, info['password']])
+        args.extend(['-p', info['password']])
     args.append(info['username'])
     return subprocess.call(args)
 
