@@ -11,7 +11,7 @@ class Announcement(OrderedModel):
     def __str__(self):
         return self.announce_text
 
-    announce_text = models.CharField(max_length=2000)
+    announce_text = models.TextField()
 
     class Meta(OrderedModel.Meta):
         pass
