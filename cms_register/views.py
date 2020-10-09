@@ -237,7 +237,9 @@ def contest_view(request):
         tmp = timezone.localtime(contest.start_time)
         date[contest.id] = tmp.strftime("%d %b %Y")
         time[contest.id] = tmp.strftime("%H:%M")
-        dur[contest.id] = format_timedelta(contest.duration, 2)
+        #dur[contest.id] = format_timedelta(contest.duration, 2)
+        cend = tmp + contest.duration
+        dur[contest.id] = cend.strftime('%d %b %Y %H:%M')
         need[contest.id] = format_timedelta(contest.contest_time, 1)
         expired[contest.id] = (timezone.now() > (contest.start_time + contest.duration))
         ended[contest.id] = (timezone.now() > (contest.start_time + contest.contest_time))
