@@ -106,7 +106,7 @@ msgstr "Registration deadline"
 
 #: cms_register/templates/cms_register/index.html:6
 msgid "practical contests"
-msgstr "Practical Contests"
+msgstr "Iran National Olympiad in Informatics(INOI) Online Contests"
 
 #: cms_register/templates/cms_register/login.html:16
 #: cms_register/templates/cms_register/recover_form.html:16
