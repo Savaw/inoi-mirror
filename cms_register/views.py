@@ -211,7 +211,9 @@ def format_timedelta(td, type):
 
 def contest_view(request):
     done = False
-    if request.method == 'POST' and request.user.is_authenticated and request.POST.get('register') == 'register':
+    if request.method == 'POST' and \
+            request.user.is_authenticated and \
+            request.POST.get('register') == 'register':
         cid = request.POST.get('cid');
         con = Contest.objects.get(id=cid);
         if Participant.objects.filter(user=request.user, contest=con).count() == 0:
@@ -230,14 +232,12 @@ def contest_view(request):
     cdown = {}
     for contest in clist:
         cdown[contest.id] = max(0, int((contest.start_time - timezone.now() + contest.duration).total_seconds()))
-        tmp = jdatetime.datetime.fromgregorian(datetime=timezone.localtime(contest.start_time))
-        date[contest.id] = persian_num(tmp.strftime("%d %b %Y"))
-        time[contest.id] = persian_num(tmp.strftime("%H:%M"))
-        dur[contest.id] = persian_num(format_timedelta(contest.duration, 2))
-        need[contest.id] = persian_num(format_timedelta(contest.contest_time, 1))
+        tmp = timezone.localtime(contest.start_time)
+        date[contest.id] = tmp.strftime("%d %b %Y")
+        time[contest.id] = tmp.strftime("%H:%M")
+        dur[contest.id] = format_timedelta(contest.duration, 2)
+        need[contest.id] = format_timedelta(contest.contest_time, 1)
         expired[contest.id] = (timezone.now() > (contest.start_time + contest.duration))
-        print(timezone.now())
-        print(contest.start_time + contest.duration)
         ended[contest.id] = (timezone.now() > (contest.start_time + contest.contest_time))
         registered[contest.id] = False
         if request.user.is_authenticated and contest.participant_set.filter(user=request.user).count() > 0:
