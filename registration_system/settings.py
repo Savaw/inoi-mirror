@@ -138,6 +138,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-messages/'
 DEFAULT_FROM_EMAIL = 'info@judge.cf'
 
+CMS_PYTHON = '/usr/bin/python3'
+
 try:
     from .local_settings import *
 except:
