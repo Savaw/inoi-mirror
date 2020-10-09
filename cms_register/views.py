@@ -206,6 +206,8 @@ def format_timedelta(td, type):
             return '%s:%s:%s' % (hours, minutes, seconds)
     if hours == 0:
         return '%s Days' % (days)
+    if days == 0:
+        return '%s Hours' % (hours)
     return '%s Days & %s Hours' % (days, hours)
 
 
