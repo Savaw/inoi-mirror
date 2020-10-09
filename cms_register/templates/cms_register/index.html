@@ -3,12 +3,14 @@
 
 {% block content %}
 
-			<h1 style="text-align: center">{% trans "practical contests" %}</h1>
-			<br>
-      <p class="lead">
-				{% for Ann in Announce %}
-					<blockquote>{{ Ann.announce_text }}</blockquote>
-				{% endfor %}
-			</p>
+<h1 style="text-align: center">{% trans "practical contests" %}</h1>
+<br>
+<p class="lead">
+{% for Ann in Announce %}
+    {% autoescape off %}
+        {{ Ann.announce_text }}
+    {% endautoescape %}
+{% endfor %}
+</p>
 {% endblock %}
 
