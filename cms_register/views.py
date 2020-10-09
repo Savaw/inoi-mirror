@@ -229,7 +229,8 @@ def contest_view(request):
     expired = {}
     ended = {}
     registered = {}
-    dur = {}
+    durd = {}
+    durt = {}
     need = {}
     cdown = {}
     for contest in clist:
@@ -239,7 +240,8 @@ def contest_view(request):
         time[contest.id] = tmp.strftime("%H:%M")
         #dur[contest.id] = format_timedelta(contest.duration, 2)
         cend = tmp + contest.duration
-        dur[contest.id] = cend.strftime('%d %b %Y<br>%H:%M')
+        durd[contest.id] = cend.strftime('%d %b %Y')
+        durt[contest.id] = cend.strftime('%H:%M')
         need[contest.id] = format_timedelta(contest.contest_time, 1)
         expired[contest.id] = (timezone.now() > (contest.start_time + contest.duration))
         ended[contest.id] = (timezone.now() > (contest.start_time + contest.contest_time))
@@ -248,7 +250,7 @@ def contest_view(request):
             registered[contest.id] = True
     return render(request, "cms_register/contests.html",
                   {'contests': clist, 'date': date, 'time': time, 'expired': expired, 'registered': registered,
-                   'done': done, 'dur': dur, 'need': need, 'ended': ended, 'cdown': cdown})
+                      'done': done, 'durd': durd, 'durt': durt, 'need': need, 'ended': ended, 'cdown': cdown})
 
 
 def unrank(request, contest_id):
