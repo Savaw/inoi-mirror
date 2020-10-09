@@ -2,10 +2,15 @@ import re
 import subprocess
 
 from django.template.defaulttags import register
+from django.conf import settings
 
 
 def cms_user_exists(username):
-    result = subprocess.run(['./scripts/cmsHasUser.py', username], stdout=subprocess.PIPE).stdout
+    result = subprocess.run([
+        settings.CMS_PYTHON,
+        './scripts/cmsHasUser.py',
+        username,
+        ], stdout=subprocess.PIPE).stdout
     result = bool(int(result.decode("utf-8").split('\n')[-2]))
     return result
 
@@ -24,12 +29,13 @@ def cms_add_user(info):
 def cms_edit_user(info):
     print("editing")
     print(info)
-    return subprocess.call(['./scripts/cmsEditUser.py',
-                            '-p', info['password'],
-                            '-e', info['email'],
-                            '-fn', info['name'],
-                            '-ln', info['lname'],
-                            info['username']])
+    return subprocess.call([settings.CMS_PYTHON,
+        './scripts/cmsEditUser.py',
+        '-p', info['password'],
+        '-e', info['email'],
+        '-fn', info['name'],
+        '-ln', info['lname'],
+        info['username']])
 
 
 def password_check(password):
@@ -126,3 +132,4 @@ def comp(a, b):
             return -1
         else:
             return 1
+
