@@ -250,7 +250,8 @@ def contest_view(request):
             registered[contest.id] = True
     return render(request, "cms_register/contests.html",
                   {'contests': clist, 'date': date, 'time': time, 'expired': expired, 'registered': registered,
-                      'done': done, 'durd': durd, 'durt': durt, 'need': need, 'ended': ended, 'cdown': cdown})
+                      'done': done, 'durd': durd, 'durt': durt, 'need': need, 'ended': ended, 'cdown': cdown,
+                      'timezone': 'UTC'})
 
 
 def unrank(request, contest_id):
