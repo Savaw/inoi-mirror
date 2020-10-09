@@ -29,13 +29,17 @@ def cms_add_user(info):
 def cms_edit_user(info):
     print("editing")
     print(info)
-    return subprocess.call([settings.CMS_PYTHON,
-        './scripts/cmsEditUser.py',
-        '-p', info['password'],
-        '-e', info['email'],
-        '-fn', info['name'],
-        '-ln', info['lname'],
-        info['username']])
+    args = [
+            settings.CMS_PYTHON,
+            './scripts/cmsEditUser.py',
+            '-e', info['email'],
+            '-fn', info['name'],
+            '-ln', info['lname'],
+            ]
+    if info.get('password'):
+        args.extend([-p, info['password']])
+    args.append(info['username'])
+    return subprocess.call(args)
 
 
 def password_check(password):

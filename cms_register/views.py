@@ -168,9 +168,9 @@ def register(request, x=0):
             user.first_name = info['name']
             user.last_name = info['lname']
             user.save()
-            #not_added = cms_add_user(info)
-            #if not_added:
-            #    cms_edit_user(info)
+            not_added = cms_add_user(info)
+            if not_added:
+                cms_edit_user(info)
             done = True
         if ok and x:
             user = User.objects.get(username=info['username'])
@@ -179,14 +179,7 @@ def register(request, x=0):
             user.email = info['email']
             if info['password'] != '':
                 user.set_password(info['password'])
-#                subprocess.call(
-#                    ['python', 'scripts/cmsEditUser.py', '-p', info['password'], '-e', info['email'], '-fn',
-#                     info['name'],
-#                     '-ln', info['lname'], info['username']])
-#            else:
-#                subprocess.call(
-#                    ['python', 'scripts/cmsEditUser.py', '-e', info['email'], '-fn', info['name'], '-ln', info['lname'],
-#                     info['username']])
+            cms_edit_user(info)
             user.save()
             done = True
     info['password'] = info['password2'] = ''
