@@ -58,9 +58,9 @@ active
                                     {% if not request.user.is_authenticated %}
                                     <a href="{% url 'cms_register:login' %}" class="btn btn-warning">{% trans "do login" %}</a>
                                     {% elif not registered|get_item:contest.id %}
-                                    <button type="submit" name="register" value="register" class="btn btn-success">{% trans "do register" %}</button>
+                                    <button type="submit" name="register" value="register" class="btn btn-success">{% trans "contest register" %}</button>
                                     {% else %}
-                                    <a href="{{ contest.contest_url }}" class="btn btn-primary" {% if not registered|get_item:contest.id %} disabled="disabled" {% endif %}>{% trans "login" %}</a>
+                                    <a href="{{ contest.contest_url }}" class="btn btn-primary" {% if not registered|get_item:contest.id %} disabled="disabled" {% endif %}>{% trans "contest enter" %}</a>
 
                                     {% endif %}
                                     {% endif %}
