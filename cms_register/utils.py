@@ -6,6 +6,8 @@ from django.conf import settings
 
 
 def cms_user_exists(username):
+    if not settings.CMS_AVAILABLE:
+        return False
     result = subprocess.run([
         settings.CMS_PYTHON,
         './scripts/cmsHasUser.py',
@@ -16,6 +18,8 @@ def cms_user_exists(username):
 
 
 def cms_add_user(info):
+    if not settings.CMS_AVAILABLE:
+        return False
     print("adding")
     print(info)
     return subprocess.call(['cmsAddUser',
@@ -27,6 +31,8 @@ def cms_add_user(info):
 
 
 def cms_edit_user(info):
+    if not settings.CMS_AVAILABLE:
+        return False
     print("editing")
     print(info)
     args = [
