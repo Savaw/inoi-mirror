@@ -1,28 +1,21 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
-
 import collections
 import json
-import locale
 import re
 import subprocess
 import urllib
 from functools import cmp_to_key
 
-import jdatetime
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from django.template.defaulttags import register
 from django.utils import timezone
-from django.utils.translation import gettext as _ 
+from django.utils.translation import gettext as _
 
-from cms_register.utils import password_check, persian_num, comp, cms_user_exists, cms_add_user, cms_edit_user
-from .models import Announcement, Contest, Participant
-
-
-# Create your views here.
+from cms_register.utils import password_check, comp, cms_user_exists, \
+        cms_add_user, cms_edit_user
+from cms_register.models import Announcement, Contest, Participant
+from cms_register.forms import ProfileForm
 
 
 def index(request):
@@ -108,15 +101,17 @@ def register(request, x=0):
     for field in fields:
         error[field] = ''
         info[field] = ''
+
     if x:
         info['username'] = request.user.username
         info['name'] = request.user.first_name
         info['lname'] = request.user.last_name
         info['email'] = request.user.email
+
     if request.method == 'POST':
         for field in fields:
-            if getInfo(field) == None:
-                if not x or (field != 'password' and field != 'password2' and field != 'username'):
+            if getInfo(field) is None:
+                if not x or field not in ['password', 'password2', 'username']:
                     addError(field, _("this field is mandatory"))
             else:
                 info[field] = getInfo(field)
@@ -147,7 +142,7 @@ def register(request, x=0):
         ok = True
         for key in error:
             if error[key] != '':
-                ok = False;
+                ok = False
         values = {
             'secret': settings.RECAPTCHA_PRIVATE_KEY,
             'response': request.POST.get(u'g-recaptcha-response', None),
@@ -162,12 +157,34 @@ def register(request, x=0):
         res = json.loads(strfeedback)
         if not res['success']:
             ok = False
-            cap_error = True;
+            cap_error = True
+
+        if x:
+            profile_form = ProfileForm(
+                request.POST,
+                instance = request.user.profile,
+            )
+        else:
+            profile_form = ProfileForm(
+                request.POST,
+            )
+
+        if not profile_form.is_valid():
+            ok = False
         if ok and not x:
-            user = User.objects.create_user(info['username'], info['email'], info['password'])
+            user = User.objects.create_user(
+                info['username'],
+                info['email'],
+                info['password'],
+            )
             user.first_name = info['name']
             user.last_name = info['lname']
+            
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
             user.save()
+            profile.save()
             not_added = cms_add_user(info)
             if not_added:
                 cms_edit_user(info)
@@ -181,18 +198,36 @@ def register(request, x=0):
                 user.set_password(info['password'])
             cms_edit_user(info)
             user.save()
+            profile_form.save(commit=True)
             done = True
+    else:
+        if x:
+            profile_form = ProfileForm(instance=request.user.profile)
+        else:
+            profile_form = ProfileForm()
     info['password'] = info['password2'] = ''
-    return render(request, "cms_register/register.html",
-                  {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY, 'ok': done, 'info': info, 'error': error,
-                   'place': place, 'type': types, 'caper': cap_error, 'x': x})
+    return render(
+        request,
+        "cms_register/register.html",
+        {
+            'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY,
+            'ok': done,
+            'info': info,
+            'error': error,
+            'place': place,
+            'type': types,
+            'caper': cap_error,
+            'x': x,
+            'profile_form': profile_form,
+        },
+    )
 
 
 def format_timedelta(td, type):
     days = td.days
     hours, remainder = divmod(td.seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
-    days, hours, minutes, seconds = int(days), int(hours), int(minutes), int(seconds)
+    days, hours, minutes, seconds = map(int, (days, hours, minutes, seconds))
     if type != 2:
         if hours < 10:
             hours = '0%s' % int(hours)
@@ -216,8 +251,8 @@ def contest_view(request):
     if request.method == 'POST' and \
             request.user.is_authenticated and \
             request.POST.get('register') == 'register':
-        cid = request.POST.get('cid');
-        con = Contest.objects.get(id=cid);
+        cid = request.POST.get('cid')
+        con = Contest.objects.get(id=cid)
         if Participant.objects.filter(user=request.user, contest=con).count() == 0:
             partof = Participant(user=request.user, contest=con)
             partof.save()
@@ -238,7 +273,7 @@ def contest_view(request):
         tmp = timezone.localtime(contest.start_time)
         date[contest.id] = tmp.strftime("%d %b %Y")
         time[contest.id] = tmp.strftime("%H:%M")
-        #dur[contest.id] = format_timedelta(contest.duration, 2)
+        # dur[contest.id] = format_timedelta(contest.duration, 2)
         cend = tmp + contest.duration
         durd[contest.id] = cend.strftime('%d %b %Y')
         durt[contest.id] = cend.strftime('%H:%M')

@@ -36,24 +36,18 @@ active
 
                             {% for key in info %}
                             <div class="form-group {% if error|get_item:key != '' %}text-danger{% endif %}">
-                                <label for="{{ key }}" class="control-label">{{ place|get_item:key }}</label>
+                                <label for="{{ key }}" class="control-label">{{ place|get_item:key }}:</label>
                                 <div>
-                                    {% if key == 'grade' %}
-                                    <select class="form-control" id="{{ key }}" name="{{ key }}">
-                                        <option class="form-control" value="دهم">دهم</option>
-                                        <option class="form-control" value="سوم">سوم</option>
-                                        <option class="form-control"  value="سایر">سایر</option>
-                                    </select>
-
-                                    {% else %}
                                     <input {% if x and key == 'username' %}disabled="disabled"{% endif %} type="{{ type|get_item:key }}" class="form-control" id="{{ key }}" name="{{ key }}" placeholder="{{ place|get_item:key }}" value="{{ info|get_item:key }}">
-                                    {% endif %}
                                     {% if error|get_item:key != '' %}
                                     <span class="help-block">{{ error|get_item:key }}</span>
                                     {% endif %}
                                 </div>
                             </div>
                             {% endfor %}
+                            <div class="form-group">
+                                {{ profile_form }}
+                            </div>
                             <div class="form-group {% if caper %}has-error{% endif %}">
                                 <div class="col-sm-offset-3 col-sm-9">
                                     <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>

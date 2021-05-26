@@ -1,5 +1,6 @@
 asgiref==3.2.10
 Django==3.1.1
+-e git+https://github.com/Grackins/django-countries@2b43650863505e9706468bc0862f653237f4829b#egg=django_countries
 django-extensions==3.0.9
 django-ordered-model==3.4.1
 django-recaptcha==2.0.6

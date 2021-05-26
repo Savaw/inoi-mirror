@@ -4,9 +4,10 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from django.db import models
 from ordered_model.models import OrderedModel
+from django_countries.fields import CountryField
+from django.utils.translation import gettext as _ 
 
 
-# Create your models here.
 class Announcement(OrderedModel):
     def __str__(self):
         return self.announce_text
@@ -45,7 +46,6 @@ class Participant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class Contestant(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    grade = models.CharField(max_length=2000, default='-')
-    school = models.CharField(max_length=2000, default='-')
+    country = CountryField(blank_label=_('(select country)'))

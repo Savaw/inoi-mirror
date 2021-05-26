@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'sorl.thumbnail',
     'captcha',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,7 @@ EMAIL_FILE_PATH = 'email-messages/'
 DEFAULT_FROM_EMAIL = 'info@judge.cf'
 
 CMS_PYTHON = '/usr/bin/python3'
+CMS_AVAILABLE = False
 
 try:
     from .local_settings import *
