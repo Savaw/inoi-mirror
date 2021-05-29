@@ -12,9 +12,15 @@ class UserAdmin(BaseUserAdmin):
         'email',
         'first_name',
         'last_name',
+        'country',
         'date_joined',
         'last_login',
     )
+
+    def country(self, user):
+        if user.profile:
+            return user.profile.country.name
+        return ''
 
 
 class AnnAdmin(OrderedModelAdmin):
