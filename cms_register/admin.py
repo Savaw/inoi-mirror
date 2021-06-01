@@ -30,6 +30,10 @@ class AnnAdmin(OrderedModelAdmin):
     list_display = ('announce_text', 'move_up_down_links')
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'country')
+
+
 class ParLine(admin.TabularInline):
     model = Participant
     classes = ['collapse']
@@ -67,7 +71,7 @@ class ParAdmin(admin.ModelAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile)
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Announcement, AnnAdmin)
 admin.site.register(Contest, ConAdmin)
 admin.site.register(Participant, ParAdmin)
