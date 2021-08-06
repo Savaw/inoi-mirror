@@ -15,7 +15,7 @@ from django.utils.translation import gettext as _
 
 from cms_register.utils import password_check, comp, cms_user_exists, \
         cms_add_user, cms_edit_user, cms_add_participation
-from cms_register.models import Announcement, Contest, Participant
+from cms_register.models import Announcement, Contest
 from cms_register.forms import ProfileForm
 
 
@@ -248,27 +248,14 @@ def format_timedelta(td, type):
 
 
 def contest_view(request):
-    done = False
-    if request.method == 'POST' and \
-            request.user.is_authenticated and \
-            request.POST.get('register') == 'register':
-        cid = request.POST.get('cid')
-        con = Contest.objects.get(id=cid)
-        if Participant.objects.filter(user=request.user, contest=con).count() == 0:
-            partof = Participant(user=request.user, contest=con)
-            partof.save()
-            subprocess.call(['cmsAddParticipation', '-c', str(con.cms_id), request.user.username])
-            done = True
     clist = Contest.objects.order_by('-start_time')
     date = dict()
     time = dict()
     durd = dict()
     durt = dict()
     need = dict()
-    cdown = dict()
     enterable = dict()
     for contest in clist:
-        cdown[contest.id] = max(0, int((contest.start_time - timezone.now() + contest.duration).total_seconds()))
         tmp = timezone.localtime(contest.start_time)
         date[contest.id] = tmp.strftime("%d %b %Y")
         time[contest.id] = tmp.strftime("%H:%M")
@@ -289,7 +276,6 @@ def contest_view(request):
             'date': date,
             'time': time,
             'enterable': enterable,
-            'done': done,
             'durd': durd,
             'durt': durt,
             'need': need,

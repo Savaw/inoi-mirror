@@ -61,11 +61,6 @@ class Contest(models.Model):
         return can_enter and cms_exists
 
 
-class Participant(models.Model):
-    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     country = CountryField(blank_label=_('(select country)'))

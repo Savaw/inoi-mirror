@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from ordered_model.admin import OrderedModelAdmin
 
-from cms_register.models import Announcement, Contest, Participant, Profile, \
+from cms_register.models import Announcement, Contest, Profile, \
     Problem
 
 
@@ -35,12 +35,6 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'country')
 
 
-class ParLine(admin.TabularInline):
-    model = Participant
-    classes = ['collapse']
-    extra = 0
-
-
 class ConAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
@@ -70,10 +64,6 @@ class ConAdmin(admin.ModelAdmin):
     )
 
 
-class ParAdmin(admin.ModelAdmin):
-    list_display = ('user', 'contest')
-
-
 class ProblemAdmin(admin.ModelAdmin):
     list_display = ('name', 'contest')
 
@@ -83,5 +73,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Announcement, AnnAdmin)
 admin.site.register(Contest, ConAdmin)
-admin.site.register(Participant, ParAdmin)
 admin.site.register(Problem, ProblemAdmin)
