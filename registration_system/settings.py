@@ -141,8 +141,9 @@ DEFAULT_FROM_EMAIL = 'info@judge.cf'
 
 CMS_PYTHON = '/usr/bin/python3'
 CMS_AVAILABLE = False
+CWS_ADDRESS = 'http://localhost:8888'
 
 try:
     from .local_settings import *
-except:
+except Exception:
     pass
