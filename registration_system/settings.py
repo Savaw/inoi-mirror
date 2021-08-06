@@ -140,6 +140,7 @@ EMAIL_FILE_PATH = 'email-messages/'
 DEFAULT_FROM_EMAIL = 'info@judge.cf'
 
 CMS_PYTHON = '/usr/bin/python3'
+CMS_BINARIES_DIR = '/home/user/.local/bin'
 CMS_AVAILABLE = False
 CWS_ADDRESS = 'http://localhost:8888'
 

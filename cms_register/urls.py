@@ -11,5 +11,9 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^contests/$', views.contest_view, name='contests'),
     url(r'^ranking/(?P<contest_id>[0-9]+)/$', views.ranking, name='ranking'),
-    url(r'^unranking/(?P<contest_id>[0-9]+)/$', views.unrank, name='unranking'),
+    url(
+        r'^goto/contest/(?P<contest_id>[0-9]+)/$',
+        views.goto_contest_view,
+        name='goto_contest',
+    ),
 ]

@@ -30,17 +30,13 @@ class Contest(models.Model):
         return self.name
 
     public_name = models.CharField(max_length=400, blank=True, null=False)
-    cms_name = models.CharField(max_length=200, blank=False, null=False)
+    cms_name = models.CharField(max_length=200, blank=True, null=False)
     start_time = models.DateTimeField('Start')
     duration = models.DurationField()
     contest_time = models.DurationField(default=timedelta(0))
     cms_id = models.IntegerField(default=0)
     ranking_file = models.FileField(upload_to=get_file_path, blank=True)
-    unofficial_ranking_file = models.FileField(
-        upload_to=get_file_path,
-        blank=True,
-    )
-    contest_url = models.CharField(max_length=2000, default='#')
+    practice_mode = models.BooleanField(default=False)
 
     def reg_count(self):
         return self.participant_set.count()
@@ -51,7 +47,18 @@ class Contest(models.Model):
 
     @property
     def url(self):
-        return settings.CWS_ADDRESS + '/' + self.cms_name
+        if self.cms_name:
+            return settings.CWS_ADDRESS + '/' + self.cms_name
+        else:
+            return '#'
+
+    def is_enterable(self, time):
+        started = time >= self.start_time
+        ended = time > self.start_time + self.duration
+        is_official = started and not ended
+        cms_exists = settings.CMS_AVAILABLE and self.cms_name
+        can_enter = is_official or self.practice_mode
+        return can_enter and cms_exists
 
 
 class Participant(models.Model):

@@ -8,12 +8,13 @@ from functools import cmp_to_key
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from cms_register.utils import password_check, comp, cms_user_exists, \
-        cms_add_user, cms_edit_user
+        cms_add_user, cms_edit_user, cms_add_participation
 from cms_register.models import Announcement, Contest, Participant
 from cms_register.forms import ProfileForm
 
@@ -61,7 +62,7 @@ def profile(request):
 
 def register(request, x=0):
     info = collections.OrderedDict()
-    error = {}
+    error = dict()
     done = False
     cap_error = False
 
@@ -259,38 +260,42 @@ def contest_view(request):
             subprocess.call(['cmsAddParticipation', '-c', str(con.cms_id), request.user.username])
             done = True
     clist = Contest.objects.order_by('-start_time')
-    date = {}
-    time = {}
-    expired = {}
-    ended = {}
-    registered = {}
-    durd = {}
-    durt = {}
-    need = {}
-    cdown = {}
+    date = dict()
+    time = dict()
+    durd = dict()
+    durt = dict()
+    need = dict()
+    cdown = dict()
+    enterable = dict()
     for contest in clist:
         cdown[contest.id] = max(0, int((contest.start_time - timezone.now() + contest.duration).total_seconds()))
         tmp = timezone.localtime(contest.start_time)
         date[contest.id] = tmp.strftime("%d %b %Y")
         time[contest.id] = tmp.strftime("%H:%M")
-        # dur[contest.id] = format_timedelta(contest.duration, 2)
         cend = tmp + contest.duration
         durd[contest.id] = cend.strftime('%d %b %Y')
         durt[contest.id] = cend.strftime('%H:%M')
         need[contest.id] = format_timedelta(contest.contest_time, 1)
-        expired[contest.id] = (timezone.now() > (contest.start_time + contest.duration))
-        ended[contest.id] = (timezone.now() > (contest.start_time + contest.contest_time))
-        registered[contest.id] = False
-        if request.user.is_authenticated and contest.participant_set.filter(user=request.user).count() > 0:
-            registered[contest.id] = True
-    return render(request, "cms_register/contests.html",
-                  {'contests': clist, 'date': date, 'time': time, 'expired': expired, 'registered': registered,
-                      'done': done, 'durd': durd, 'durt': durt, 'need': need, 'ended': ended, 'cdown': cdown,
-                      'timezone': 'UTC'})
 
+        can_enter = contest.is_enterable(timezone.now())
+        can_enter = can_enter and request.user.is_authenticated
+        enterable[contest.id] = can_enter
 
-def unrank(request, contest_id):
-    return ranking(request, contest_id, True)
+    return render(
+        request,
+        "cms_register/contests.html",
+        {
+            'contests': clist,
+            'date': date,
+            'time': time,
+            'enterable': enterable,
+            'done': done,
+            'durd': durd,
+            'durt': durt,
+            'need': need,
+            'timezone': 'UTC',
+        },
+    )
 
 
 def ranking(request, contest_id, unof=False):
@@ -313,13 +318,13 @@ def ranking(request, contest_id, unof=False):
     tab = []
     mxg = 128
     for user in users:
-        th = {}
+        th = dict()
         li = user.decode().replace('\n', '').split('\t')
         th['name'] = li[1]
         res = []
         ret = li[2:]
         for i in range(len(ret)):
-            inf = {}
+            inf = dict()
             ret[i] = float(ret[i])
             inf['score'] = int(ret[i])
             inf['green'] = int(255 - ret[i] / mx[i] * mxg)
@@ -335,3 +340,12 @@ def ranking(request, contest_id, unof=False):
     return render(request, "cms_register/ranking.html",
                   {'users': tab, 'head': head, 'mx': mx, 'exp': expired, 'error': False, 'contest': contest,
                    'un': unof})
+
+
+@login_required
+def goto_contest_view(request, contest_id):
+    contest = get_object_or_404(Contest, id=contest_id)
+    if not contest.is_enterable(timezone.now()):
+        return redirect('cms_register:contests')
+    cms_add_participation(contest.cms_id, request.user.username)
+    return redirect(contest.url)

@@ -1,9 +1,20 @@
 import re
 import subprocess
 import json
+import os.path
 
 from django.template.defaulttags import register
 from django.conf import settings
+
+
+ADD_USER_EXEC = os.path.join(
+    settings.CMS_BINARIES_DIR,
+    'cmsAddUser',
+)
+ADD_PARTICIPATION_EXEC = os.path.join(
+    settings.CMS_BINARIES_DIR,
+    'cmsAddParticipation',
+)
 
 
 class CmsProblemData:
@@ -43,12 +54,26 @@ def cms_add_user(info):
         return False
     print("adding")
     print(info)
-    return subprocess.call(['cmsAddUser',
-                            '-p', info['password'],
-                            '-e', info['email'],
-                            info['name'],
-                            info['lname'],
-                            info['username']])
+    return subprocess.call([
+        ADD_USER_EXEC,
+        '-p', info['password'],
+        '-e', info['email'],
+        info['name'],
+        info['lname'],
+        info['username'],
+    ])
+
+
+def cms_add_participation(cid, username):
+    if not settings.CMS_AVAILABLE:
+        return False
+    subprocess.call([
+        ADD_PARTICIPATION_EXEC,
+        '-c',
+        f'{cid}',
+        username,
+    ])
+    return True
 
 
 def cms_edit_user(info):

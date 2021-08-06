@@ -43,7 +43,9 @@ class ParLine(admin.TabularInline):
 
 class ConAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['public_name']}),
+        (None, {
+            'fields': ['public_name', 'practice_mode'],
+        }),
         ('CMS Config', {
             'classes': ('collapse', 'open'),
             'fields': ['cms_id', 'cms_name'],
@@ -55,9 +57,7 @@ class ConAdmin(admin.ModelAdmin):
         ('Attached', {
             'classes': ('collapse', 'open'),
             'fields': [
-                'contest_url',
                 'ranking_file',
-                'unofficial_ranking_file',
             ],
         }),
     ]
