@@ -9,13 +9,14 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from cms_register.utils import password_check, comp, cms_user_exists, \
         cms_add_user, cms_edit_user, cms_add_participation
-from cms_register.models import Announcement, Contest
+from cms_register.models import Announcement, Contest, Problem
 from cms_register.forms import ProfileForm
 
 
@@ -284,6 +285,21 @@ def contest_view(request):
     )
 
 
+def problemset_view(request):
+    contests = Contest.objects.filter(practice_mode=True) \
+        .order_by('-start_time').all()
+    problems = list()
+    for contest in contests:
+        problems.extend(contest.problem_set.all())
+    return render(
+        request,
+        'cms_register/problemset.html',
+        {
+            'problems': problems,
+        },
+    )
+
+
 def ranking(request, contest_id, unof=False):
     contest = get_object_or_404(Contest, id=contest_id)
     expired = (timezone.now() > (contest.start_time + contest.contest_time))
@@ -335,3 +351,13 @@ def goto_contest_view(request, contest_id):
         return redirect('cms_register:contests')
     cms_add_participation(contest.cms_id, request.user.username)
     return redirect(contest.url)
+
+
+@login_required
+def goto_problem_view(request, problem_id):
+    problem = get_object_or_404(Problem, id=problem_id)
+    contest = problem.contest
+    if not contest.practice_mode:
+        raise Http404('Problem does not exist')
+    cms_add_participation(contest.cms_id, request.user.username)
+    return redirect(problem.url)

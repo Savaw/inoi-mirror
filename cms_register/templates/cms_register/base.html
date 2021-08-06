@@ -78,6 +78,9 @@ html {
                 <div class="nav navbar-nav">
                     <a class="nav-item nav-link text-white" href="{% url 'cms_register:contests' %}">{% trans "contests" %}</a>
                 </div>
+                <div class="nav navbar-nav">
+                    <a class="nav-item nav-link text-white" href="{% url 'cms_register:problemset' %}">{% trans "problemset" %}</a>
+                </div>
 				<div class="nav navbar-nav ml-auto">
                     {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}

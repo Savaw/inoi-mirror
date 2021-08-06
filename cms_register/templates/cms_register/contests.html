@@ -4,10 +4,6 @@
 {% block header %}
 {% endblock %}
 
-{% block contest %}
-active
-{% endblock %}
-
 {% block content %}
 
 <div class="row">
@@ -17,7 +13,7 @@ active
             <thead>
                 <tr>
                     <th class="text-center">#</th>
-                    <th>{% trans "contest name" %}</th>
+                    <th class="text-center">{% trans "contest name" %}</th>
                     <th class="text-center">{% trans "length" %}	</th>
                     <th class="text-center">{% trans "register len" %}</th>
                     <th class="text-center">{% trans "contest len" %}</th>
@@ -28,7 +24,7 @@ active
                 {% for contest in contests %}
                 <tr>
                     <td class="text-center">{{ forloop.counter }}</td>
-                    <td>
+                    <td class="text-center">
                         {% if enterable|get_item:contest.id %}
                             <a href="{% url 'cms_register:goto_contest' contest.id %}">
                                 {{ contest.name }}

@@ -16,4 +16,10 @@ urlpatterns = [
         views.goto_contest_view,
         name='goto_contest',
     ),
+    url(r'^problemset/$', views.problemset_view, name='problemset'),
+    url(
+        r'^goto/problem/(?P<problem_id>[0-9]+)/$',
+        views.goto_problem_view,
+        name='goto_problem',
+    ),
 ]
