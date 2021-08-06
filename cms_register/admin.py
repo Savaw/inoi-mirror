@@ -43,7 +43,11 @@ class ParLine(admin.TabularInline):
 
 class ConAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['public_name', 'cms_name', 'cms_id']}),
+        (None, {'fields': ['public_name']}),
+        ('CMS Config', {
+            'classes': ('collapse', 'open'),
+            'fields': ['cms_id', 'cms_name'],
+        }),
         ('Times', {
             'classes': ('collapse', 'open'),
             'fields': ['start_time', 'duration', 'contest_time'],

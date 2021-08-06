@@ -1,8 +1,29 @@
 import re
 import subprocess
+import json
 
 from django.template.defaulttags import register
 from django.conf import settings
+
+
+class CmsProblemData:
+    @staticmethod
+    def from_dict(data):
+        inst = CmsProblemData()
+        inst.name = data['name']
+        inst.title = data['title']
+        return inst
+
+
+class CmsContestData:
+    @staticmethod
+    def from_dict(data):
+        inst = CmsContestData()
+        inst.name = data.get('name', '')
+        inst.problems = list()
+        for pdata in data['tasks']:
+            inst.problems.append(CmsProblemData.from_dict(pdata))
+        return inst
 
 
 def cms_user_exists(username):
@@ -46,6 +67,23 @@ def cms_edit_user(info):
         args.extend(['-p', info['password']])
     args.append(info['username'])
     return subprocess.call(args)
+
+
+def cms_get_contest_data(cid):
+    if not settings.CMS_AVAILABLE:
+        return None
+    args = [
+        settings.CMS_PYTHON,
+        './scripts/cmsGetContest.py',
+        f'{cid}',
+    ]
+    output = subprocess.run(args, stdout=subprocess.PIPE).stdout
+    output = output.decode('utf-8')
+    jdata = output.split('\n')[1]
+    data = json.loads(jdata)
+    if data.get('success'):
+        return CmsContestData.from_dict(data)
+    return None
 
 
 def password_check(password):
