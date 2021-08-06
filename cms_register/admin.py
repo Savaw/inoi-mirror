@@ -60,7 +60,7 @@ class ConAdmin(admin.ModelAdmin):
         'start_time',
         'duration',
         'cms_id',
-        'reg_count',
+        'participants_count',
     )
 
 

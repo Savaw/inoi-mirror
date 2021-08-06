@@ -37,9 +37,7 @@ class Contest(models.Model):
     cms_id = models.IntegerField(default=0)
     ranking_file = models.FileField(upload_to=get_file_path, blank=True)
     practice_mode = models.BooleanField(default=False)
-
-    def reg_count(self):
-        return self.participant_set.count()
+    participants_count = models.IntegerField(default=0)
 
     @property
     def name(self):

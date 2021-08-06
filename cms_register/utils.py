@@ -31,6 +31,7 @@ class CmsContestData:
     def from_dict(data):
         inst = CmsContestData()
         inst.name = data.get('name', '')
+        inst.participants = data.get('participants', 0)
         inst.problems = list()
         for pdata in data['tasks']:
             inst.problems.append(CmsProblemData.from_dict(pdata))

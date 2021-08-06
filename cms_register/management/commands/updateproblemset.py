@@ -14,6 +14,7 @@ class Command(BaseCommand):
                 continue
             print(f'Update contest #{contest.cms_id}<{cdata.name}>')
             contest.cms_name = cdata.name
+            contest.participants_count = cdata.participants
             contest.save()
 
             for pdata in cdata.problems:

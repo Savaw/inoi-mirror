@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from cms.db import SessionGen, Contest, Task
+from cms.db import SessionGen, Contest, Task, Participation
 
 
 def main():
@@ -18,6 +18,7 @@ def main():
     data = {
         'success': False,
         'name': '',
+        'participants': 0,
         'tasks': list(),
     }
 
@@ -26,7 +27,11 @@ def main():
         if contest is None:
             print(json.dumps(data))
             return 1
+
         data['name'] = contest.name
+        data['participants'] = session.query(Participation).filter(
+            Participation.contest_id == cid
+        ).count()
 
         tasks = session.query(Task).filter(
             Task.contest_id == cid
