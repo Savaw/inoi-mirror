@@ -51,11 +51,9 @@ class Contest(models.Model):
             return '#'
 
     def is_enterable(self, time):
-        started = time >= self.start_time
         ended = time > self.start_time + self.duration
-        is_official = started and not ended
         cms_exists = settings.CMS_AVAILABLE and self.cms_name
-        can_enter = is_official or self.practice_mode
+        can_enter = not ended or self.practice_mode
         return can_enter and cms_exists
 
 
