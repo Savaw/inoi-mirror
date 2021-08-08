@@ -144,6 +144,8 @@ CMS_BINARIES_DIR = '/home/user/.local/bin'
 CMS_AVAILABLE = False
 CWS_ADDRESS = 'http://localhost:8888'
 
+LOGIN_URL = 'cms_register:login'
+
 try:
     from .local_settings import *
 except Exception:
