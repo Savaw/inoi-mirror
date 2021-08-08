@@ -266,7 +266,6 @@ def contest_view(request):
         need[contest.id] = format_timedelta(contest.contest_time, 1)
 
         can_enter = contest.is_enterable(timezone.now())
-        can_enter = can_enter and request.user.is_authenticated
         enterable[contest.id] = can_enter
 
     return render(
