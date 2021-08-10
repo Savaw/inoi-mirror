@@ -5,10 +5,10 @@ from . import views
 app_name = 'cms_register'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^login/$', views.loginv, name='login'),
-    url(r'^logout/$', views.logoutv, name='logout'),
-    url(r'^registration/$', views.register, name='register'),
-    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^login/$', views.login_view, name='login'),
+    url(r'^logout/$', views.logout_view, name='logout'),
+    url(r'^registration/$', views.register_view, name='register'),
+    url(r'^profile/$', views.profile_view, name='profile'),
     url(r'^contests/$', views.contest_view, name='contests'),
     url(r'^ranking/(?P<contest_id>[0-9]+)/$', views.ranking, name='ranking'),
     url(

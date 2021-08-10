@@ -1,7 +1,4 @@
-import collections
 import json
-import re
-import subprocess
 import urllib
 from functools import cmp_to_key
 
@@ -17,7 +14,7 @@ from django.utils.translation import gettext as _
 from cms_register.utils import password_check, comp, cms_user_exists, \
         cms_add_user, cms_edit_user, cms_add_participation
 from cms_register.models import Announcement, Contest, Problem
-from cms_register.forms import ProfileForm
+from cms_register.forms import ProfileForm, UserEditForm, UserForm
 
 
 def index(request):
@@ -25,7 +22,7 @@ def index(request):
     return render(request, "cms_register/index.html", {'Announce': All})
 
 
-def loginv(request):
+def login_view(request):
     usern = None
     passw = None
     ok = False
@@ -39,7 +36,7 @@ def loginv(request):
         user_info = {
             'username': user.username,
             'name': user.first_name,
-            'lname': user.last_name,
+            'last_name': user.last_name,
             'password': passw,
             'email': user.email,
         }
@@ -52,177 +49,129 @@ def loginv(request):
         return render(request, "cms_register/login.html", {'Error': ok})
 
 
-def logoutv(request):
+def logout_view(request):
     logout(request)
     return redirect('cms_register:index')
 
 
-def profile(request):
-    return register(request, 1)
-
-
-def register(request, x=0):
-    info = collections.OrderedDict()
-    error = dict()
+def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('cms_register:index')
+    
     done = False
     cap_error = False
-
-    def getInfo(field):
-        if field in request.POST and request.POST[field] != '':
-            return request.POST[field]
-        else:
-            return None
-
-    def addError(field, val):
-        if error[field] == '':
-            error[field] = val
-
-    if request.user.is_authenticated and not x:
-        return redirect('cms_register:index')
-    if not request.user.is_authenticated and x:
-        return redirect('cms_register:index')
-    fields = ['username', 'email', 'password', 'password2', 'name', 'lname']
-    place = {'username': _("username"),
-             'email': _("email"),
-             'password': _("password"),
-             'password2': _("password repeat"),
-             'name': _("name"),
-             'lname': _("family name"),
-             # 'grade' : 'پایه',
-             # 'school' : 'مدرسه',
-             }
-    types = {'username': 'text',
-             'email': 'email',
-             'password': 'password',
-             'password2': 'password',
-             'name': 'text',
-             'lname': 'text',
-             # 'grade' : 'text',
-             # 'school' : 'text',
-             }
-    for field in fields:
-        error[field] = ''
-        info[field] = ''
-
-    if x:
-        info['username'] = request.user.username
-        info['name'] = request.user.first_name
-        info['lname'] = request.user.last_name
-        info['email'] = request.user.email
+    user_form = UserForm()
+    profile_form = ProfileForm()
 
     if request.method == 'POST':
-        for field in fields:
-            if getInfo(field) is None:
-                if not x or field not in ['password', 'password2', 'username']:
-                    addError(field, _("this field is mandatory"))
-            else:
-                info[field] = getInfo(field)
-        if x:
-            info['username'] = request.user.username
-        if len(info['username']) > 150:
-            addError('username', _("most 150 chars"))
-        if not re.match("^[A-Za-z0-9_-]+$", info['username']):
-            addError('username', _("only num latin underline"))
-        if not x and User.objects.filter(username=info['username']).exists():
-            addError('username', _("duplicate username"))
-        if not re.match(r"[^@]+@[^@]+\.[^@]+", info['email']):
-            addError('email', _("invalid email"))
-        if info['password'] != '' or info['password2'] != '':
-            passdet = password_check(info['password'])
-            if passdet['length_error']:
-                addError('password', _("at least 8 char"))
-            if passdet['digit_error']:
-                addError('password', _("at least 1 num"))
-            if passdet['lowercase_error'] and passdet['uppercase_error']:
-                addError('password', _("at least 1 latin"))
-            if info['password'] != info['password2']:
-                addError('password2', _("password dont match"))
-        if not re.match(r"^[a-zA-Z ]+$", info['name']):
-            addError('name', _("name must english"))
-        if not re.match(r"^[a-zA-Z ]+$", info['lname']):
-            addError('lname', _("family must english"))
-        ok = True
-        for key in error:
-            if error[key] != '':
-                ok = False
-        values = {
-            'secret': settings.RECAPTCHA_PRIVATE_KEY,
-            'response': request.POST.get(u'g-recaptcha-response', None),
-            'remoteip': request.META.get("REMOTE_ADDR", None),
-        }
-        url = settings.RECAPTCHA_REQUEST_URL
-        data = urllib.parse.urlencode(values)
-        binary_data = data.encode('UTF-8')
-        req = urllib.request.Request(url, binary_data)
-        resp = urllib.request.urlopen(req)
-        strfeedback = resp.read().decode('UTF-8')
-        res = json.loads(strfeedback)
-        if not res['success']:
-            ok = False
-            cap_error = True
+        cap_error = _check_captcha_error(request)
+        user_form = UserForm(request.POST)
+        profile_form = ProfileForm(request.POST)
 
-        if x:
-            profile_form = ProfileForm(
-                request.POST,
-                instance = request.user.profile,
-            )
-        else:
-            profile_form = ProfileForm(
-                request.POST,
-            )
-
-        if not profile_form.is_valid():
-            ok = False
-        if ok and not x:
-            user = User.objects.create_user(
-                info['username'],
-                info['email'],
-                info['password'],
-            )
-            user.first_name = info['name']
-            user.last_name = info['lname']
-            
+        if not cap_error and user_form.is_valid() and profile_form.is_valid():            
+            user = user_form.save()
+            user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-
-            user.save()
             profile.save()
-            not_added = cms_add_user(info)
-            if not_added:
-                cms_edit_user(info)
+
+            raw_password = user_form.cleaned_data.get('password1')
+            _add_or_edit_cms_user(user, raw_password)
+
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
             done = True
-        if ok and x:
-            user = User.objects.get(username=info['username'])
-            user.first_name = info['name']
-            user.last_name = info['lname']
-            user.email = info['email']
-            if info['password'] != '':
-                user.set_password(info['password'])
-            cms_edit_user(info)
-            user.save()
-            profile_form.save(commit=True)
-            done = True
-    else:
-        if x:
-            profile_form = ProfileForm(instance=request.user.profile)
-        else:
-            profile_form = ProfileForm()
-    info['password'] = info['password2'] = ''
+        
     return render(
         request,
         "cms_register/register.html",
         {
             'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY,
             'ok': done,
-            'info': info,
-            'error': error,
-            'place': place,
-            'type': types,
             'caper': cap_error,
-            'x': x,
+            'is_edit': False,
+            'user_form': user_form,
             'profile_form': profile_form,
         },
     )
+
+
+def profile_view(request):
+    if not request.user.is_authenticated:
+        return redirect('cms_register:index')
+    
+    done = False
+    cap_error = False
+    user_form = UserEditForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.profile)
+
+    if request.method == 'POST':
+        cap_error = _check_captcha_error(request)
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        
+        if not cap_error and user_form.is_valid() and profile_form.is_valid():
+            user = User.objects.get(username=request.user.username)
+            user.first_name = user_form.cleaned_data.get('first_name')
+            user.last_name = user_form.cleaned_data.get('last_name')
+            user.email = user_form.cleaned_data.get('email')
+        
+            raw_password = user_form.cleaned_data.get('password1')
+            if raw_password != '':
+                user.set_password(raw_password)
+            
+            user.save()
+            profile_form.save(commit=True)
+
+            _add_or_edit_cms_user(user, raw_password)
+            done = True
+        
+    return render(
+        request,
+        "cms_register/register.html",
+        {
+            'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY,
+            'ok': done,
+            'caper': cap_error,
+            'is_edit': True,
+            'user_form': user_form,
+            'profile_form': profile_form,
+        },
+    )
+
+
+def _add_or_edit_cms_user(user, raw_password):
+    info = {
+        'username':     user.username,
+        'email':        user.email,
+        'name':         user.first_name,
+        'last_name':    user.last_name,
+        'password':     raw_password
+    }
+
+    not_added = cms_add_user(info)
+    if not_added:
+        cms_edit_user(info)
+
+
+def _check_captcha_error(request):
+    values = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': request.POST.get(u'g-recaptcha-response', None),
+            'remoteip': request.META.get("REMOTE_ADDR", None),
+        }
+    url = settings.RECAPTCHA_REQUEST_URL
+    data = urllib.parse.urlencode(values)
+    binary_data = data.encode('UTF-8')
+    req = urllib.request.Request(url, binary_data)
+    resp = urllib.request.urlopen(req)
+    strfeedback = resp.read().decode('UTF-8')
+    res = json.loads(strfeedback)
+    if not res['success']:
+
+        return True
+    
+    return False
 
 
 def format_timedelta(td, type):

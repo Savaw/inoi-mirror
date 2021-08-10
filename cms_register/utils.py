@@ -60,7 +60,7 @@ def cms_add_user(info):
         '-p', info['password'],
         '-e', info['email'],
         info['name'],
-        info['lname'],
+        info['last_name'],
         info['username'],
     ])
 
@@ -87,7 +87,7 @@ def cms_edit_user(info):
             './scripts/cmsEditUser.py',
             '-e', info['email'],
             '-fn', info['name'],
-            '-ln', info['lname'],
+            '-ln', info['last_name'],
             ]
     if info.get('password'):
         args.extend(['-p', info['password']])

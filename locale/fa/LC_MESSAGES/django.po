@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-23 20:27+0330\n"
+"POT-Creation-Date: 2021-08-11 00:41+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,114 +18,130 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: cms_register/templates/cms_register/base.html:60
+#: cms_register/forms.py:21
+msgid "Country"
+msgstr "کشور"
+
+#: cms_register/forms.py:25 cms_register/forms.py:37
+#: cms_register/templates/cms_register/login.html:28
+#: cms_register/templates/cms_register/login.html:29
+#: cms_register/templates/cms_register/recover_form.html:25
+#: scoreboard/templates/scoreboard/index.html:8
+msgid "username"
+msgstr "نام کاربری"
+
+#: cms_register/forms.py:27
+msgid "first_name"
+msgstr "نام"
+
+#: cms_register/forms.py:28
+msgid "last_name"
+msgstr "نام خانوادگی"
+
+#: cms_register/forms.py:29
+msgid "email"
+msgstr "ایمیل"
+
+#: cms_register/forms.py:40
+msgid "Password"
+msgstr "رمز عبور"
+
+#: cms_register/forms.py:47
+msgid "Password confirmation"
+msgstr "تایید رمز عبور"
+
+#: cms_register/forms.py:50
+msgid "Enter the same password as before, for verification."
+msgstr ""
+
+#: cms_register/models.py:64
+msgid "(select country)"
+msgstr "انتخاب کشور"
+
+#: cms_register/templates/cms_register/base.html:79
 msgid "contests"
 msgstr "مسابقات"
 
-#: cms_register/templates/cms_register/base.html:70
+#: cms_register/templates/cms_register/base.html:82
+msgid "problemset"
+msgstr "سوالات"
+
+#: cms_register/templates/cms_register/base.html:87
 msgid "management"
 msgstr "مدیریت"
 
-#: cms_register/templates/cms_register/base.html:73
+#: cms_register/templates/cms_register/base.html:89
 msgid "profile"
 msgstr "پروفایل"
 
-#: cms_register/templates/cms_register/base.html:74
+#: cms_register/templates/cms_register/base.html:90
 msgid "exit"
 msgstr "خروج"
 
-#: cms_register/templates/cms_register/base.html:78
-#: cms_register/templates/cms_register/contests.html:60
-#: cms_register/templates/cms_register/login.html:20
-#: cms_register/templates/cms_register/login.html:38
+#: cms_register/templates/cms_register/base.html:92
+#: cms_register/templates/cms_register/login.html:23
+#: cms_register/templates/cms_register/login.html:37
 #: cms_register/templates/cms_register/recover_form.html:20
 #: cms_register/templates/cms_register/recover_form.html:38
 msgid "login"
 msgstr "ورود"
 
-#: cms_register/templates/cms_register/base.html:79
-#: cms_register/templates/cms_register/register.html:23
+#: cms_register/templates/cms_register/base.html:93
+#: cms_register/templates/cms_register/register.html:30
 msgid "register"
 msgstr "ثبت نام"
 
-#: cms_register/templates/cms_register/base.html:94
+#: cms_register/templates/cms_register/base.html:108
 msgid "all right reserved part 1"
 msgstr "تمامی حقوق توسّط "
 
-#: cms_register/templates/cms_register/base.html:94
+#: cms_register/templates/cms_register/base.html:108
 msgid "shaazzz"
 msgstr "شاززز"
 
-#: cms_register/templates/cms_register/base.html:94
+#: cms_register/templates/cms_register/base.html:109
 msgid "all right reserved part 2"
 msgstr "محفوظ است."
 
 #: cms_register/templates/cms_register/contests.html:16
-msgid "register successfull"
-msgstr "ثبت نام موفّقیّت آمیز بود."
-
-#: cms_register/templates/cms_register/contests.html:24
+#: cms_register/templates/cms_register/problemset.html:17
 msgid "contest name"
 msgstr "مسابقات"
 
-#: cms_register/templates/cms_register/contests.html:25
+#: cms_register/templates/cms_register/contests.html:17
 msgid "length"
 msgstr "مهلت شرکت"
 
-#: cms_register/templates/cms_register/contests.html:26
+#: cms_register/templates/cms_register/contests.html:18
 msgid "register len"
 msgstr "مهلت ثبت نام"
 
-#: cms_register/templates/cms_register/contests.html:27
+#: cms_register/templates/cms_register/contests.html:19
 msgid "contest len"
 msgstr "مدّت مسابقه"
 
-#: cms_register/templates/cms_register/contests.html:28
-msgid "partisipants"
-msgstr "تعداد شرکت‌کنندگان"
-
-#: cms_register/templates/cms_register/contests.html:48
+#: cms_register/templates/cms_register/contests.html:43
 msgid "scoreboard"
 msgstr "جدول امتیازات"
-
-#: cms_register/templates/cms_register/contests.html:52
-msgid "practice scoreboard"
-msgstr "امتیازات تمرینی"
-
-#: cms_register/templates/cms_register/contests.html:56
-msgid "do login"
-msgstr "وارد شوید"
-
-#: cms_register/templates/cms_register/contests.html:58
-msgid "do register"
-msgstr "ثبت نام کنید"
-
-#: cms_register/templates/cms_register/contests.html:71
-msgid "register deadline"
-msgstr "مهلت ثبت نام"
 
 #: cms_register/templates/cms_register/index.html:6
 msgid "practical contests"
 msgstr "آزمون های عملی"
 
-#: cms_register/templates/cms_register/login.html:16
+#: cms_register/templates/cms_register/login.html:19
 #: cms_register/templates/cms_register/recover_form.html:16
 msgid "user pass wrong"
 msgstr "نام کاربری یا رمز عبور اشتباه است"
 
-#: cms_register/templates/cms_register/login.html:25
-#: cms_register/templates/cms_register/login.html:27
-#: cms_register/templates/cms_register/recover_form.html:25
-#: cms_register/views.py:90 scoreboard/templates/scoreboard/index.html:8
-msgid "username"
-msgstr "نام کاربری"
-
-#: cms_register/templates/cms_register/login.html:31
+#: cms_register/templates/cms_register/login.html:32
 #: cms_register/templates/cms_register/login.html:33
 #: cms_register/templates/cms_register/recover_form.html:31
-#: cms_register/views.py:92
 msgid "password"
 msgstr "رمز عبور"
+
+#: cms_register/templates/cms_register/problemset.html:16
+msgid "problem name"
+msgstr "نام مسئله"
 
 #: cms_register/templates/cms_register/ranking.html:11
 msgid "access denied"
@@ -147,86 +163,87 @@ msgstr "غیر رسمی"
 msgid "forget password?"
 msgstr "فراموشی رمز عبور"
 
-#: cms_register/templates/cms_register/register.html:19
+#: cms_register/templates/cms_register/register.html:25
 msgid "data submitted"
 msgstr "اطّلاعات با موفّقیّت ارسال شد"
 
-#: cms_register/templates/cms_register/register.html:23
+#: cms_register/templates/cms_register/register.html:30
 msgid "setting"
 msgstr "تنظیمات"
 
-#: cms_register/templates/cms_register/register.html:26
+#: cms_register/templates/cms_register/register.html:33
 msgid "if no pass change keep empty"
 msgstr "در صورت عدم تمایل به تغییر رمز عبور، ورودی‌های مربوطه را خالی بگذارید."
 
-#: cms_register/templates/cms_register/register.html:55
+#: cms_register/templates/cms_register/register.html:46
 msgid "should not robot"
 msgstr "لازم است ربات نباشید!"
 
-#: cms_register/templates/cms_register/register.html:61
+#: cms_register/templates/cms_register/register.html:52
 msgid "submit"
 msgstr "ارسال"
-
-#: cms_register/views.py:91
-msgid "email"
-msgstr "ایمیل"
-
-#: cms_register/views.py:93
-msgid "password repeat"
-msgstr "تکرار پسورد"
-
-#: cms_register/views.py:94
-msgid "name"
-msgstr "نام"
-
-#: cms_register/views.py:95
-msgid "family name"
-msgstr "نام خانوادگی"
-
-#: cms_register/views.py:120
-msgid "this field is mandatory"
-msgstr "این مورد لازم است"
-
-#: cms_register/views.py:126
-msgid "most 150 chars"
-msgstr "بیش از حد طولانی است"
-
-#: cms_register/views.py:128
-msgid "only num latin underline"
-msgstr "تنها شامل حروف لاتین و اعداد باشد"
-
-#: cms_register/views.py:130
-msgid "duplicate username"
-msgstr "نام کاربری قبلا استفاده شده است"
-
-#: cms_register/views.py:132
-msgid "invalid email"
-msgstr "ایمیل نامعتبر"
-
-#: cms_register/views.py:136
-msgid "at least 8 char"
-msgstr "حداقل ۸ کاراکتر"
-
-#: cms_register/views.py:138
-msgid "at least 1 num"
-msgstr "حداقل شامل یک رقم باشد"
-
-#: cms_register/views.py:140
-msgid "at least 1 latin"
-msgstr "حداقل شامل یک حرف لاتین باشد"
-
-#: cms_register/views.py:142
-msgid "password dont match"
-msgstr "رمز عبورهای وارد شده منطبق نیستند"
-
-#: cms_register/views.py:144
-msgid "name must english"
-msgstr "حروف نام باید لاتین باشد"
-
-#: cms_register/views.py:146
-msgid "family must english"
-msgstr "حروف نام خانوادگی باید لاتین باشد"
 
 #: scoreboard/templates/scoreboard/index.html:9
 msgid "accepted"
 msgstr "صحیح"
+
+#, fuzzy
+#~| msgid "this field is mandatory"
+#~ msgid "This field is required."
+#~ msgstr "این مورد لازم است"
+
+#, fuzzy
+#~| msgid "data submitted"
+#~ msgid "No file was submitted."
+#~ msgstr "اطّلاعات با موفّقیّت ارسال شد"
+
+#~ msgid "register successfull"
+#~ msgstr "ثبت نام موفّقیّت آمیز بود."
+
+#~ msgid "partisipants"
+#~ msgstr "تعداد شرکت‌کنندگان"
+
+#~ msgid "practice scoreboard"
+#~ msgstr "امتیازات تمرینی"
+
+#~ msgid "do login"
+#~ msgstr "وارد شوید"
+
+#~ msgid "do register"
+#~ msgstr "ثبت نام کنید"
+
+#~ msgid "register deadline"
+#~ msgstr "مهلت ثبت نام"
+
+#~ msgid "password repeat"
+#~ msgstr "تکرار پسورد"
+
+#~ msgid "family name"
+#~ msgstr "نام خانوادگی"
+
+#~ msgid "most 150 chars"
+#~ msgstr "بیش از حد طولانی است"
+
+#~ msgid "only num latin underline"
+#~ msgstr "تنها شامل حروف لاتین و اعداد باشد"
+
+#~ msgid "duplicate username"
+#~ msgstr "نام کاربری قبلا استفاده شده است"
+
+#~ msgid "invalid email"
+#~ msgstr "ایمیل نامعتبر"
+
+#~ msgid "at least 8 char"
+#~ msgstr "حداقل ۸ کاراکتر"
+
+#~ msgid "at least 1 num"
+#~ msgstr "حداقل شامل یک رقم باشد"
+
+#~ msgid "at least 1 latin"
+#~ msgstr "حداقل شامل یک حرف لاتین باشد"
+
+#~ msgid "name must english"
+#~ msgstr "حروف نام باید لاتین باشد"
+
+#~ msgid "family must english"
+#~ msgstr "حروف نام خانوادگی باید لاتین باشد"
